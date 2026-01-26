@@ -1,0 +1,132 @@
+body {
+  margin-top: 100px;
+  font-family: "PT Sans", sans;
+  background-color: black;
+  background-image:url("./resources/bg/planets/1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-size: 18px;
+  overflow:hidden;
+}
+.iframe-container {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  left:10%;
+  top:10%;
+ 
+  border: 2px solid #3498db; /* Màu border và độ dày border */
+  border-radius: 10px; /* Độ cong của border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho iframe-container */
+  overflow: hidden; /* Ẩn phần overflow */
+  
+  display:none;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#iframe-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.root{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	align-items: center;
+    
+}
+.main-container{
+	position:absolute;
+	top:10%;
+	left:15%;
+	width:70%;
+	height:80%;
+	background-color:rgba(0, 0, 0, 0.4);
+	border: 2px solid transparent;
+	box-shadow: 0 0 10px 5px #33BBFF;
+}
+.troup{
+	 display: flex;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+}
+.setup-list{
+	 display: flex;
+     justify-content: center;
+     position: absolute;
+	 width:100%;
+	 bottom:25px;
+	 left:350px;
+}
+.character-portrait {
+  position: relative;
+  margin-right: 50px;
+  color: white;
+  transform: rotate(45deg);
+  width: 6em;
+  height: 6em;
+  padding: 4px;
+  border: 2px solid transparent;
+}
+.character-portrait .inner {
+  position: absolute;
+  width: 4.5em;
+  height: 4.5em;
+  right: 10px;
+  top: 10px;
+  background-color: white;
+  box-shadow: 0 0 2px 1px #33BBFF;
+  overflow: hidden;
+  text-align: center;
+}
+.character-portrait .inner img {
+  position: absolute;
+  left: -25px;
+  top: -30px;
+  width:120px;
+  height:120px;
+  transform: rotate(-45deg);
+ 
+}
+.character-portrait .outer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: black;
+  border: 1px solid yellow;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 5px #33BBFF;
+}
+.character-portrait .outer label {
+  align-self: flex-end;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 4px;
+  font-size: 0.95em;
+  text-shadow: 0px 0px 10px #33BBFF;
+}
+.character-portrait:hover {
+  background-color: rgba(0, 128, 0, 0.2);
+  border: 2px solid white;
+  box-shadow: 0px 0px 20px white;
+}

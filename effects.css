@@ -1,0 +1,143 @@
+/*Speed Up Effects*/
+
+.speedup-effect-root{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
+  display: flex;
+}
+
+.speedup-effect-container {
+  margin: auto;
+  perspective: 2px;
+  perspective-origin: 50% 50%;
+  position: relative;
+  -webkit-animation: speedup-effect-hueRotate 20s infinite linear;
+          animation: speedup-effect-hueRotate 20s infinite linear;
+}
+
+.speedup-effect-group {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  top: -500px;
+  transform-style: preserve-3d;
+  -webkit-animation: speedup-effect-move 8s infinite linear;
+          animation: speedup-effect-move 8s infinite linear;
+}
+
+.speedup-effect-group:nth-child(2) {
+  -webkit-animation: speedup-effect-move 8s infinite linear;
+          animation: speedup-effect-move 8s infinite linear;
+  -webkit-animation-delay: -4s;
+          animation-delay: -4s;
+}
+
+.speedup-effect-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  background-size: cover;
+  opacity: 1;
+  -webkit-animation: speedup-effect-fade 8s infinite linear;
+          animation: speedup-effect-fade 8s infinite linear;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+}
+
+.speedup-effect-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 #507b7b, 4.98vw 61.91vh 0 4px #f090fd, 8.49vw 81.49vh 0 5px #0ecc6b, 88.44vw 34.54vh 0 5px #6f200f, 55.85vw 24.94vh 0 5px #6972a4, 68.04vw 28.36vh 0 1px #fd78b9, 69.16vw 67.93vh 0 5px #2476a6, 92.16vw 52.89vh 0 4px #a754ff, 71.16vw 24.79vh 0 4px #a5da5c, 37.49vw 58.25vh 0 3px #ad65d2, 45.38vw 33.13vh 0 2px #d8add1, 8.7vw 94.14vh 0 3px #6e5102, 20.05vw 45.45vh 0 5px #295c30, 24.78vw 29.7vh 0 2px #f09688, 60.03vw 71.28vh 0 3px #7a10fd, 57.76vw 35.54vh 0 4px #ce73da, 59.04vw 91.44vh 0 1px #1cb5c0, 83.62vw 5.24vh 0 3px #2f3a72, 87.37vw 25.97vh 0 4px #a09878, 74.76vw 29.33vh 0 3px #4285bf, 85.01vw 9.03vh 0 4px #b6eb1d, 83.57vw 7.94vh 0 1px #33ab20, 57.12vw 75.08vh 0 4px #d34f88, 22.01vw 16.72vh 0 5px #4cfa4a, 31.78vw 91.81vh 0 4px #55369b, 62.87vw 83.82vh 0 2px #b2abd8, 57.89vw 93.79vh 0 4px #abab0d, 90.51vw 95.54vh 0 5px #6cffe4, 31.25vw 94.18vh 0 2px #6e731e, 83.46vw 36.96vh 0 4px #074576, 40.06vw 19.45vh 0 1px #6dee52, 24.74vw 16.52vh 0 4px #da635f, 90.24vw 35.77vh 0 2px #31e0a9, 35.17vw 52.51vh 0 1px #ac4f38, 5.66vw 68.39vh 0 2px #bc6b93, 58.98vw 2.74vh 0 1px #49c5d1, 2.54vw 58.33vh 0 2px #7213c8, 26.52vw 56.87vh 0 2px #255f6e, 43.35vw 62.96vh 0 4px #dc9cf4, 42.48vw 80.15vh 0 4px #c23f41, 83.19vw 12.43vh 0 4px #05551f, 81.57vw 11.76vh 0 5px #1d7c31, 16.25vw 71.76vh 0 5px #0883bf, 87.47vw 16.52vh 0 3px #ca8926, 32.62vw 57.17vh 0 5px #4f4e18, 23.26vw 74.76vh 0 2px #46fa9c, 24.59vw 33.22vh 0 3px #2174a9, 53.8vw 26.34vh 0 4px #b7d00b, 60.7vw 86.04vh 0 5px #76feef, 69.49vw 68.24vh 0 1px #8388a2, 47.14vw 42.88vh 0 3px #e47197, 13.05vw 98.37vh 0 1px #d33dad, 69.1vw 24.7vh 0 5px #3ad30d, 11.37vw 88.37vh 0 1px #8d60ed, 42.91vw 4.22vh 0 5px #275b05, 4.84vw 17.29vh 0 3px #7d6635, 16.48vw 91.97vh 0 1px #7913d7, 20vw 63.05vh 0 3px #672059, 93.82vw 95.15vh 0 3px #37937c, 36.84vw 69.41vh 0 1px #6e5f33, 98.44vw 96.91vh 0 3px #ad6fcb, 13.83vw 41.46vh 0 2px #411050, 72.75vw 15.63vh 0 5px #3e5c2c, 14.25vw 42.95vh 0 4px #64b890, 99.48vw 22.21vh 0 5px #9c06a5, 96.06vw 27.3vh 0 3px #997b07, 91.18vw 13.68vh 0 5px #62c9f5, 68.83vw 87.95vh 0 3px #792f20, 77.53vw 79.46vh 0 4px #8b86d0, 32.03vw 77.78vh 0 1px #58764a, 17.11vw 63.65vh 0 3px #943cdf, 99.08vw 64.36vh 0 4px #76e273, 72.32vw 94.88vh 0 3px #94ebdd, 15.63vw 95.15vh 0 1px #6d3a53, 5.9vw 59.91vh 0 3px #a9745a, 35.53vw 72.95vh 0 4px #2a493b, 18.73vw 99.05vh 0 5px #47bef5, 37.51vw 82.11vh 0 2px #cdee58, 43.85vw 96.07vh 0 4px #c1dbbf, 69.65vw 33.76vh 0 2px #e0c453, 50.77vw 62.68vh 0 2px #d9b976, 77.08vw 83.33vh 0 1px #0539a3, 84.26vw 13.5vh 0 3px #a725a8, 24.95vw 68.15vh 0 2px #6c2d19, 95.16vw 0.82vh 0 2px #27131f, 49.8vw 91.31vh 0 2px #eb8684, 80.9vw 45.73vh 0 3px #f13344, 45.03vw 98.9vh 0 3px #29dfd5, 35.91vw 96.48vh 0 1px #de85ff, 40.82vw 66.82vh 0 4px #9a70e4, 55.38vw 16.43vh 0 3px #67401a, 58.49vw 40.56vh 0 4px #e70170, 98.89vw 33.52vh 0 5px #5728dc, 64.83vw 71.81vh 0 1px #490b22, 94.17vw 31.46vh 0 3px #ca456c, 61.6vw 61.72vh 0 2px #94fb2d, 4.5vw 39.71vh 0 1px #f18ac4, 71.47vw 0.53vh 0 2px #bcdcd4, 17.09vw 52.33vh 0 3px #7b0ffa, 23.03vw 7.68vh 0 1px #b4bf5b, 47.88vw 53.22vh 0 1px #fdf3cc, 9.52vw 38.04vh 0 2px #335e4e, 78.25vw 4.14vh 0 1px #91d899, 66.74vw 8.76vh 0 3px #c37e5b, 12.97vw 47.52vh 0 5px #9ed7fe, 63.38vw 61.33vh 0 5px #d6a474, 35.48vw 49.09vh 0 1px #af0953, 4.17vw 54.09vh 0 4px #9dec83, 25.68vw 83.88vh 0 4px #45641b, 21.02vw 54.33vh 0 4px #331291, 0.46vw 63.14vh 0 4px #634435, 31.28vw 16.02vh 0 1px #21ea16, 98.8vw 41.25vh 0 3px #a22406, 14.23vw 87.39vh 0 2px #d9ff08, 45.8vw 31.46vh 0 5px #3ab7df, 56.65vw 32.64vh 0 3px #0b1e5c, 93.96vw 10.33vh 0 1px #6c5369, 58.96vw 5.04vh 0 5px #7a3f50, 96.14vw 2.28vh 0 2px #622a74, 96.05vw 90.23vh 0 5px #86d7ef, 78.24vw 22.68vh 0 5px #d5bffc, 73.27vw 95.26vh 0 5px #2ced39, 3.38vw 42.7vh 0 4px #a1800e, 77.49vw 92.11vh 0 2px #b69a0d, 96.3vw 52vh 0 5px #df2dca, 40.34vw 55.42vh 0 4px #b93171, 53.85vw 30.72vh 0 3px #615649, 96.6vw 96.55vh 0 3px #1485c9, 98.37vw 3.44vh 0 3px #7e7eb5, 85.24vw 82.44vh 0 2px #03ebe8, 10.79vw 8.9vh 0 4px #f4f355, 44.98vw 12.86vh 0 4px #cc36b8, 47.17vw 62.95vh 0 1px #1e1b81, 96.84vw 21.34vh 0 2px #f92fb4, 60.57vw 79.31vh 0 5px #f52546, 45.79vw 41.73vh 0 3px #334ca7, 11.19vw 92.71vh 0 4px #629278, 14.39vw 46.72vh 0 2px #f47ffc, 46.49vw 62.43vh 0 1px #c144c5, 88.45vw 81.18vh 0 5px #5bd546, 3.18vw 16.66vh 0 5px #94283f, 17.64vw 13.11vh 0 2px #1e6f24, 56.94vw 32.61vh 0 1px #75b15f, 20.79vw 31.42vh 0 2px #8d4117, 52.5vw 5.47vh 0 3px #b1c9bc, 76.53vw 70.22vh 0 1px #bc678f, 20.56vw 51.77vh 0 3px #345e24, 10.71vw 77.96vh 0 1px #f601be, 21.85vw 69.13vh 0 2px #d4758d, 83.71vw 1.09vh 0 4px #5344dd, 15.07vw 41.07vh 0 5px #17c836, 39.64vw 52.46vh 0 4px #c0e28d, 94.67vw 32.91vh 0 3px #f516b9, 78.23vw 83.14vh 0 5px #10390f, 29.94vw 89.75vh 0 2px #ab8e98, 37.46vw 40.05vh 0 4px #228750, 73.95vw 40.91vh 0 1px #1de4ff, 39.06vw 1.11vh 0 3px #f380d9, 5.41vw 1.95vh 0 1px #83278f, 30.04vw 42.08vh 0 4px #3f96bc, 25.5vw 87.67vh 0 4px #b15395, 16.37vw 75vh 0 3px #38b233, 93.72vw 20.17vh 0 4px #fe40d5, 56.22vw 27.62vh 0 4px #68f60c, 66.83vw 8.03vh 0 4px #433d5f, 0.59vw 53.02vh 0 5px #5b6325, 25vw 62.61vh 0 1px #3e621f, 72.43vw 49.94vh 0 5px #a38f89, 10.39vw 44.55vh 0 5px #f4f3ae, 53.31vw 9.43vh 0 2px #95620c, 4.15vw 74.74vh 0 5px #8c3d2e, 18.73vw 82.42vh 0 3px #856dab, 65.83vw 53.42vh 0 1px #b54bf7, 26.43vw 12.61vh 0 5px #f295cd, 12.28vw 1.32vh 0 5px #5809d9, 11.01vw 21.03vh 0 2px #77eb23, 88.33vw 67.9vh 0 5px #bf6915, 75.08vw 0.67vh 0 3px #601a6f, 27.38vw 72.58vh 0 4px #1f48ee, 70.45vw 87.38vh 0 5px #a14ac4, 57.69vw 71.9vh 0 5px #56713f, 94.82vw 44.22vh 0 2px #e1af74, 76.35vw 28.2vh 0 4px #30fca8, 20.33vw 9.71vh 0 2px #480fce, 84.4vw 91.86vh 0 2px #42db32, 86.06vw 4.27vh 0 3px #6e15ef, 99.43vw 71.31vh 0 1px #62f28b, 9.81vw 21.64vh 0 3px #eb61bb, 68.71vw 29.01vh 0 1px #c27503, 24.54vw 58.3vh 0 4px #5d76b8, 74.4vw 27.95vh 0 4px #b41b7d, 67.97vw 1.04vh 0 3px #dc7bc6, 1.67vw 31.6vh 0 1px #e44a1f, 33.89vw 19.79vh 0 3px #2da358, 66.57vw 15.33vh 0 5px #f19192, 64.88vw 51.93vh 0 1px #f12ce0, 25.75vw 96.63vh 0 1px #e6d8ea, 45.12vw 3.03vh 0 5px #780fbf, 67.09vw 97.22vh 0 4px #e454ed, 18.55vw 72.55vh 0 1px #96d94e, 10.12vw 57.8vh 0 4px #5e2ce3, 40.23vw 39.18vh 0 1px #26fed0, 56.79vw 72.71vh 0 2px #f86fc2, 13.77vw 85.36vh 0 2px #97ac8d, 69.51vw 46.4vh 0 5px #3cd388, 19.92vw 29.32vh 0 2px #7185b3, 56.67vw 95.95vh 0 5px #d86cee, 51.59vw 24.5vh 0 4px #126907, 1.62vw 90.62vh 0 3px #6a6529, 26.04vw 42.07vh 0 4px #cec727, 5.09vw 58vh 0 5px #668743, 41.97vw 74.9vh 0 1px #e720c8, 58.94vw 74.88vh 0 3px #30adb5, 74.8vw 68.07vh 0 5px #813ff1, 80.9vw 65.48vh 0 2px #fe0ee8, 78.48vw 26.77vh 0 3px #34eeb1, 33vw 37.84vh 0 2px #0ff64d, 7.22vw 47.62vh 0 2px #a7238d, 4.34vw 41.28vh 0 2px #28a9b8, 22.89vw 11.51vh 0 1px #cd5483, 57.73vw 66.75vh 0 3px #8dbd83, 71.84vw 42.6vh 0 4px #f76def, 89.03vw 73.75vh 0 2px #3f392a, 96.37vw 97.98vh 0 1px #59a25e, 98.03vw 33.25vh 0 3px #b79f41, 76.23vw 41.26vh 0 4px #407fad, 82.85vw 8.79vh 0 4px #b85205, 46.25vw 66.73vh 0 1px #2fa11b, 49.64vw 16.77vh 0 3px #0db9f7, 40.1vw 6.62vh 0 4px #6096fb, 80.31vw 26.69vh 0 5px #90362e, 50.32vw 18.81vh 0 1px #982ffb, 42.77vw 88.85vh 0 5px #298091, 49.31vw 16.98vh 0 4px #e898bd, 24.77vw 97.07vh 0 1px #f33994, 22.75vw 92.15vh 0 4px #abf590, 77.12vw 38.81vh 0 5px #decc30, 25.86vw 18.47vh 0 4px #f87962, 62.31vw 8.99vh 0 2px #1665cf, 89.79vw 93.66vh 0 4px #9450a8, 48.3vw 86.19vh 0 3px #3a52dd, 22.76vw 64.31vh 0 1px #3e5831, 25.65vw 94.45vh 0 1px #c254fc, 34.25vw 86.53vh 0 5px #fd9fcd, 94.28vw 6.42vh 0 1px #233b1c, 37.07vw 29.68vh 0 5px #5fa1a5, 41.86vw 4.96vh 0 4px #d3e60f, 6.06vw 39.85vh 0 3px #8c2a33, 2vw 99.94vh 0 4px #af170f, 75.52vw 66.57vh 0 5px #16c62d, 10.89vw 55.85vh 0 4px #bcad64, 25.53vw 6.37vh 0 3px #1c983b, 59.76vw 3.74vh 0 5px #09c8c9, 2.23vw 53.12vh 0 5px #4498d4, 17.77vw 85.43vh 0 4px #c5066f, 26.43vw 44.81vh 0 4px #404584, 18.43vw 44.3vh 0 1px #8eda03, 45.47vw 94.55vh 0 2px #d8c5ce, 84.18vw 92.8vh 0 2px #77f65f, 98.58vw 95.56vh 0 3px #3e2d3c, 74.5vw 48.64vh 0 5px #576314, 67.71vw 54vh 0 4px #0f65f1, 90.89vw 32.67vh 0 5px #caa6d4, 17.08vw 29.6vh 0 4px #b0c2cf, 11.47vw 9.73vh 0 5px #d2b91f, 59.58vw 21.58vh 0 3px #504075, 47.58vw 85.59vh 0 5px #fd9b8d, 18.78vw 18.65vh 0 2px #f7c50d, 44.2vw 59.16vh 0 5px #196460, 55.85vw 24.07vh 0 1px #9f1a3e, 62.2vw 22.27vh 0 2px #1158eb, 69.39vw 1.3vh 0 1px #78f97c, 70.07vw 18.2vh 0 1px #6ab7a1, 87.17vw 19.8vh 0 3px #cde95a, 15.2vw 45.38vh 0 2px #b334c1, 73.5vw 24.11vh 0 1px #5c6a4b, 52.28vw 83.61vh 0 4px #aba47f, 97.02vw 95.52vh 0 4px #cf8bbf, 20.26vw 34.54vh 0 4px #e29c8b, 64.84vw 79.72vh 0 3px #177edc, 15.25vw 8.12vh 0 3px #fe9e5e, 25.57vw 90.98vh 0 3px #378a88, 54.82vw 12.75vh 0 5px #7e4ea1, 96.66vw 69.39vh 0 4px #d93d98, 54.82vw 97.62vh 0 2px #c33860, 56.68vw 56.72vh 0 4px #9bbc96, 56.2vw 38.2vh 0 5px #ce9705, 88.21vw 2.05vh 0 3px #7cb822, 75.6vw 69.7vh 0 5px #38991d, 62.89vw 76.06vh 0 4px #9708aa, 75.25vw 29.07vh 0 2px #112eeb, 65.77vw 15.27vh 0 3px #541f25, 18.54vw 26.94vh 0 1px #ddf242, 36.47vw 27.21vh 0 2px #9654c3, 45.85vw 71vh 0 5px #13ec96, 93.82vw 27.68vh 0 3px #23c70f, 29.44vw 6.84vh 0 1px #955c0c, 38vw 15.75vh 0 2px #fca1cd, 18.46vw 18.1vh 0 2px #040494, 75.76vw 97.23vh 0 4px #c80c53, 72.11vw 34.44vh 0 5px #30e671, 21.43vw 54.19vh 0 5px #3bc40f, 9.4vw 23.76vh 0 1px #b92940, 78.31vw 42.2vh 0 5px #7f7312, 52.15vw 95.83vh 0 2px #030276, 69.53vw 25.89vh 0 3px #4a2771, 33.98vw 47.01vh 0 4px #e17741, 29.29vw 27.2vh 0 4px #7c9dd6, 36.18vw 38.1vh 0 3px #4d8707, 34.77vw 80.21vh 0 4px #d7a9ea, 10.75vw 83.4vh 0 1px #773865, 10.99vw 21.04vh 0 2px #4df70c, 86.68vw 44.38vh 0 4px #7a09a1, 78.31vw 58.6vh 0 1px #6941ac, 78.9vw 49.83vh 0 2px #27829c, 46.22vw 50.47vh 0 2px #3edf5d, 87.34vw 33.34vh 0 1px #b04579, 21.35vw 80.75vh 0 1px #3fb6ab, 14.37vw 49.36vh 0 2px #c48252, 26.75vw 88.71vh 0 3px #90f05f, 90.54vw 0.49vh 0 5px #0a5962, 56.32vw 89.14vh 0 2px #e250c3, 92.63vw 42.5vh 0 4px #bbe61f, 99.82vw 75.49vh 0 5px #49f109, 58.87vw 64.28vh 0 4px #cd8281, 36.85vw 31.86vh 0 3px #77c4f1, 70.95vw 5.64vh 0 2px #944b73, 83.01vw 62.53vh 0 1px #72b484, 6.26vw 14.03vh 0 5px #d24820, 12.43vw 66.97vh 0 3px #c38d54, 95.85vw 81.53vh 0 5px #f0e321, 0.71vw 9.17vh 0 2px #f33fbd, 84.78vw 17.27vh 0 3px #541e1e, 73.62vw 73.41vh 0 3px #be6646, 77.34vw 79.04vh 0 4px #e6f233, 59.07vw 31.12vh 0 3px #ef16cc, 19vw 5.25vh 0 5px #0845ff, 42.76vw 99.66vh 0 4px #a963b9, 28.4vw 55.99vh 0 2px #47f868, 29.03vw 65.68vh 0 2px #079514, 21.61vw 25.68vh 0 2px #dbf4ec, 5.75vw 32.74vh 0 3px #7e0d24, 21.64vw 17.3vh 0 1px #401d93, 27.79vw 97.74vh 0 1px #69d609, 20.46vw 29.05vh 0 1px #244b88, 64.31vw 47.84vh 0 5px #379d06, 23.84vw 56.47vh 0 3px #2e54b8, 56.13vw 71.86vh 0 2px #6bba34, 30.54vw 11.84vh 0 2px #9be610, 12.7vw 30.94vh 0 3px #ad9f43, 31.72vw 3.21vh 0 5px #7325c5, 83.99vw 98.17vh 0 5px #1a42b0, 30.08vw 72.16vh 0 2px #36e368, 53.52vw 88.74vh 0 2px #88d593, 80.74vw 60.6vh 0 1px #e786cb, 49.09vw 61.44vh 0 1px #214528, 50.56vw 40.31vh 0 1px #603bac, 32.42vw 18vh 0 4px #8cfa60, 61.73vw 37.72vh 0 3px #02109f, 14.44vw 85.88vh 0 5px #1a4f42, 81.61vw 73.03vh 0 3px #120512, 50.52vw 27.55vh 0 4px #1068f7, 53.74vw 40.92vh 0 3px #6de277, 63.15vw 21.07vh 0 3px #3da0fe, 21.84vw 74.09vh 0 2px #90337f, 53.52vw 66.34vh 0 4px #21239d, 73.49vw 42.1vh 0 1px #255f4f, 41.4vw 37.4vh 0 2px #c31e32, 56.53vw 99.16vh 0 1px #98a163, 25.75vw 41.31vh 0 4px #4c32a4, 87.01vw 10.05vh 0 1px #0a1016, 80.9vw 87.11vh 0 1px #cdd9f6, 67.66vw 73.31vh 0 3px #a18492, 31.97vw 52.84vh 0 5px #70e60d, 7.94vw 24.69vh 0 3px #73b60e, 24.51vw 37.85vh 0 3px #b858f7, 61.31vw 25.42vh 0 5px #1d6b4d, 51.61vw 61.39vh 0 5px #b95340, 85.41vw 74.52vh 0 2px #2e2084, 67.38vw 32.42vh 0 3px #4f6057, 11.93vw 56.84vh 0 4px #170f11, 2.03vw 98.13vh 0 5px #9f6a39, 61.04vw 80.06vh 0 1px #0404f8, 38vw 31.64vh 0 1px #90160d, 10.33vw 84.69vh 0 4px #857d47, 54.24vw 47.13vh 0 5px #dc73b1, 8.17vw 52.96vh 0 4px #fae7a6, 83.34vw 43.7vh 0 5px #536ff7, 35.5vw 42.77vh 0 4px #f483b7, 23.09vw 82.54vh 0 2px #0ac673, 34.27vw 8.18vh 0 5px #43d3e8, 17.79vw 85.64vh 0 1px #0806d7, 30.91vw 98.3vh 0 4px #411934, 86.79vw 43.94vh 0 3px #70b326, 41.27vw 85.03vh 0 4px #c8bbcd, 67.94vw 37.19vh 0 4px #1935a3, 67.25vw 82.76vh 0 5px #3a5f17, 9.66vw 9.58vh 0 1px #847195, 58.94vw 5.97vh 0 4px #f97f39, 6.52vw 57.69vh 0 1px #6fdb01, 99.11vw 59.06vh 0 1px #8aa53e, 24.36vw 84.91vh 0 2px #21c94f, 31.74vw 45.31vh 0 1px #b017af, 17.93vw 50.17vh 0 5px #05ed53, 30.59vw 0.07vh 0 5px #a4737f, 57.82vw 44.44vh 0 1px #a353d3, 3.91vw 88.8vh 0 3px #52b5d5, 93.51vw 67.45vh 0 1px #2abb75, 17.35vw 40.95vh 0 2px #087d7c, 52.95vw 70.43vh 0 3px #18cd52, 62.97vw 9.69vh 0 3px #866915, 4.31vw 64.89vh 0 5px #1f7d9c, 57.6vw 25.12vh 0 4px #ab1c45, 56.75vw 68.54vh 0 2px #dd42f2, 86.82vw 61.9vh 0 4px #5fe036, 61.94vw 82.62vh 0 1px #be1f68, 80.37vw 75.46vh 0 1px #215850, 19.09vw 67.22vh 0 1px #738b21, 16.62vw 4.35vh 0 5px #3f868e, 72.48vw 5vh 0 2px #d541e6, 97.12vw 63.07vh 0 5px #824a9d, 4.23vw 41.22vh 0 3px #14eef9, 91.14vw 53.72vh 0 3px #3f1eac, 3.97vw 34.63vh 0 2px #639b68, 84.22vw 82.9vh 0 3px #994cdc, 8.6vw 81.56vh 0 5px #f1fb8a, 50.29vw 94.08vh 0 3px #ff8571, 66.25vw 48.71vh 0 5px #3a70a0, 33.34vw 77.7vh 0 5px #b2aaff, 9.12vw 94.77vh 0 4px #5a8557, 41.48vw 98.16vh 0 4px #e0d4db, 65.67vw 21.07vh 0 5px #1d34ee, 18.24vw 32.35vh 0 4px #2aa7d3, 69.63vw 1.66vh 0 4px #f0050d, 11.16vw 54.92vh 0 4px #1c5d9e, 99.96vw 12.6vh 0 2px #0c4e8a, 73.5vw 15.3vh 0 2px #257d3c, 61.8vw 71.24vh 0 1px #9b8c17, 79.94vw 53.88vh 0 3px #5133ff, 57.98vw 77.45vh 0 4px #c37c0b, 44.69vw 74.97vh 0 1px #c0e82c, 85.8vw 74.78vh 0 2px #e9ae6b, 41.36vw 80.77vh 0 5px #eae2d2, 67.14vw 94.55vh 0 3px #96f6e1, 99.09vw 25.51vh 0 5px #58a53d, 68.32vw 94.8vh 0 4px #4785b0, 91.67vw 78.82vh 0 3px #ded214, 8.56vw 27.01vh 0 3px #98058b, 41.91vw 85.65vh 0 2px #d07d31, 26.03vw 30.57vh 0 3px #6480b2, 98.71vw 92.9vh 0 1px #fe5867, 41vw 54.2vh 0 2px #94c004, 84.73vw 31.78vh 0 3px #f6aaae, 82.33vw 66.67vh 0 5px #22ff57, 34.48vw 28.1vh 0 1px #6f3ad1, 56.4vw 50.34vh 0 2px #4de139, 54.86vw 47.15vh 0 1px #351d7c, 93.87vw 66.65vh 0 2px #e342d7, 65.99vw 85.31vh 0 4px #0cdde9, 1vw 74.33vh 0 1px #17f5fe, 49.68vw 85.08vh 0 1px #0d9749, 15.91vw 22.88vh 0 3px #762266, 81.7vw 2.36vh 0 5px #e031a6, 60.18vw 33.37vh 0 2px #a1bd1d, 27.19vw 37.48vh 0 4px #c560c2, 1.21vw 22.62vh 0 5px #8118ca, 87.15vw 6.36vh 0 2px #efc6a5, 27.2vw 47.03vh 0 5px #7171c4, 43.25vw 16.54vh 0 5px #4c83db, 76.76vw 79.83vh 0 1px #38f299, 59.89vw 77.38vh 0 5px #8b9c60, 74.04vw 66.8vh 0 1px #69d3f2, 36.58vw 58.95vh 0 4px #54af68, 16.32vw 28.35vh 0 5px #ac6976, 82.19vw 94.17vh 0 4px #e31629, 16.75vw 41.13vh 0 1px #770fb5, 37.21vw 15.17vh 0 1px #8f1eb0, 72.72vw 56.36vh 0 1px #4ad151, 76.01vw 10.73vh 0 3px #d01adb, 74.14vw 73.77vh 0 5px #59c48f, 83.97vw 30.99vh 0 5px #b491be, 66.61vw 77.84vh 0 5px #1a93c3, 13.57vw 40.21vh 0 2px #70f556, 83.09vw 65.78vh 0 3px #fbb471, 73.03vw 37.97vh 0 3px #b9ffcd, 30.96vw 81.12vh 0 5px #9685f0, 81.36vw 1.18vh 0 1px #215a4f, 74.44vw 99.16vh 0 2px #05da2f, 33.14vw 17.22vh 0 2px #d0848a, 31.53vw 41.88vh 0 4px #f9ca19, 50.04vw 96.66vh 0 5px #29e060, 62.51vw 94.56vh 0 5px #bafc41, 10.14vw 62.01vh 0 3px #ef8127, 72.89vw 82.22vh 0 4px #e59def, 79.24vw 45.61vh 0 5px #666b47, 21.9vw 5.67vh 0 2px #6d4306, 13.29vw 78.21vh 0 1px #8baae9, 9.71vw 68vh 0 5px #ffa31b, 29.8vw 19.79vh 0 3px #ce4d1c, 11.08vw 49.96vh 0 1px #74a55d, 81.04vw 60.54vh 0 4px #50f4b2, 55.77vw 39.86vh 0 2px #496c43;
+}
+
+.speedup-effect-group:nth-child(2) .item {
+  -webkit-animation-delay: -4s;
+          animation-delay: -4s;
+}
+
+.item-right {
+  transform: rotateY(90deg) translateZ(500px);
+}
+
+.item-left {
+  transform: rotateY(-90deg) translateZ(500px);
+}
+
+.item-top {
+  transform: rotateX(90deg) translateZ(500px);
+}
+
+.item-bottom {
+  transform: rotateX(-90deg) translateZ(500px);
+}
+
+.item-middle {
+  transform: rotateX(180deg) translateZ(1000px);
+}
+
+@-webkit-keyframes speedup-effect-move {
+  0% {
+    transform: translateZ(-200px) rotate(0deg);
+  }
+  100% {
+    transform: translateZ(150px) rotate(0deg);
+  }
+}
+
+@keyframes speedup-effect-move {
+  0% {
+    transform: translateZ(-200px) rotate(0deg);
+  }
+  100% {
+    transform: translateZ(150px) rotate(0deg);
+  }
+}
+@-webkit-keyframes speedup-effect-fade {
+  0% {
+    opacity: 0.2;
+  }
+  25%, 60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+@keyframes speedup-effect-fade {
+  0% {
+    opacity: 0.2;
+  }
+  25%, 60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+@-webkit-keyframes speedup-effect-hueRotate {
+  0% {
+    filter: hue-rotate(0);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes speedup-effect-hueRotate {
+  0% {
+    filter: hue-rotate(0);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}

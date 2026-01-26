@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Game UI</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.8/css/ionicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Orbitron|Questrial'>
+<style>
+@charset "UTF-8";
+html {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  font-family: "Orbitron", "Ionicons", sans-serif;
+  color: #46467F;
+  cursor: default;
+  font-size: 2rem;
+  user-select: none;
+  overflow: hidden;
+}
+
+body{
+  background: linear-gradient(60deg, #080826 25%, #0F0E35 100%);
+  background-image: url("resources/bg/bg2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.debug {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+}
+
+.page {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 60%;
+  height: 70%;
+  animation: scaleIn 0.5s;
+  transition: 0.25s;
+  background-color: rgba(5, 5, 5, 0.7);
+  border-radius: 15px;
+  border:#f0f4f6 solid 1px;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7); 
+  transition: box-shadow 0.3s ease-in-out; 
+}
+.page.home.active {
+  filter: blur(3px);
+  pointer-events: none;
+  transform-origin: center center;
+  transform: perspective(1000px) rotateY(35deg) translateX(-20vw);
+}
+
+.list {
+  position: absolute;
+  top: calc(50vh - 225px);
+  left: 20vw;
+  width: 450px;
+  height: 270px;
+  
+}
+.list .icon {
+  position: absolute;
+  top: 0;
+  left: -350px;
+  width: 450px;
+  height: 270px;
+  line-height: 270px;
+  text-align: center;
+  font-size: 6.5em;
+  color: #CDCCFF;
+  text-shadow: 5px 5px 100px #4C4C99;
+}
+.list .icon:before {
+  content: "";
+}
+.list .icon.s:before {
+  content: "";
+}
+.list .icon.l:before {
+  content: "";
+}
+.list .icon.l:after {
+  content: "";
+  margin-left: -0.2em;
+  font-size: 0.65em;
+}
+.list .icon.o:before {
+  content: "";
+}
+.list .selector {
+  position: absolute;
+  width: 450px;
+  height: 90px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px #46467F;
+  animation: bolder 1.5s ease-in-out infinite;
+  pointer-events: none;
+  transition: 0.15s;
+}
+.list .item {
+  position: relative;
+  width: 450px;
+  height: 90px;
+  text-indent: 25px;
+  line-height: 90px;
+  box-shadow: inset 0 0 0 2px transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.15s;
+}
+.list .item .sub {
+  position: absolute;
+  font-size: 50%;
+  line-height: 0px;
+  transform: translateY(-40px);
+  opacity: 0;
+  font-weight: bolder;
+  transition: 0.15s;
+}
+.list .item:before {
+  content: "";
+  position: absolute;
+  right: 30px;
+  line-height: 90px;
+  font-family: "Ionicons";
+  color: #4C4C99;
+  text-shadow: 0 0 30px #4C4C99;
+  transform-origin: left center;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: 0.15s;
+}
+.list .item.active {
+  line-height: 65px;
+  color: #CDCCFF;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.list .item.active .sub {
+  transform: translateY(0px);
+  opacity: 1;
+  color: #4C4C99;
+  text-shadow: none;
+}
+.list .item.active:before {
+  transform: scale(1);
+  right: 25px;
+  opacity: 1;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(1.3);
+    filter: blur(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes bolder {
+  0%, 100% {
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px #46467F;
+  }
+  50% {
+    border-radius: 15px;
+    box-shadow: inset 0 0 0 2px #4C4C99;
+    background: rgba(255, 255, 255, 0.015);
+  }
+}
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="page home">
+	<div class="list">
+		<div class="icon"></div>
+		<div class="selector"></div>
+		<div id="game1-single" class="item" data-mode="s">Campaign 1-Training<div class="sub">Single Player</div></div>
+		<div id="game1-multi" class="item" data-mode="l">Campaign 1-Official<div class="sub">Multiplayer</div></div>
+		<div id="game2-single" class="item" data-mode="s">Campaign 2-Training<div class="sub">Single Player</div></div>
+		<div id="game2-multi" class="item" data-mode="l">Campaign 2-Official<div class="sub">Multiplayer</div></div>
+	</div>
+</div>
+<div class="debug"></div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script>
+  // Prevent right-click
+$(document).bind("contextmenu", function(event) {
+	event.preventDefault();
+});
+
+// Setup
+$('.icon').addClass('s');
+$('.item').first().addClass('active');
+
+// Mode selection
+$('.item').hover(function(){
+	var modeId = $(this).attr('data-mode');
+	var top = $(this).position().top;
+	$('.selector').css({'top' : top + 'px'});
+	$('.item').removeClass('active');
+	$(this).addClass('active');
+	$('.icon').removeClass('s l o');
+	$('.icon').addClass(modeId);
+});
+  </script>
+
+</body>
+</html>
+
+<script>
+	let _game1_single=document.getElementById("game1-single");
+	let _game1_multi=document.getElementById("game1-multi");
+	let _game2_single=document.getElementById("game2-single");
+	let _game2_multi=document.getElementById("game2-multi");
+	
+	let _lock=false;
+	
+	_game1_single.addEventListener("click",()=>{
+		if(_lock)return;
+			_lock=true;
+		setTimeout(()=>{
+			//location.href="legion-game-unit-option.html";
+			localStorage.setItem('LegionGameID',1);
+			localStorage.setItem('LegionGame-Mode',"SinglePlayer");
+			location.href="training-1.html";
+		},500);
+	});
+	_game1_multi.addEventListener("click",()=>{
+		if(_lock)return;
+			_lock=true;
+		setTimeout(()=>{
+			//location.href="legion-game-unit-option.html";
+			localStorage.setItem('LegionGameID',1);
+			localStorage.setItem('LegionGame-Mode',"MultiPlayer");
+			location.href="legion-game-unit-option.html";
+		},500);
+	});
+	_game2_single.addEventListener("click",()=>{
+		if(_lock)return;
+			_lock=true;
+		setTimeout(()=>{
+			localStorage.setItem('LegionGameID',2);
+			localStorage.setItem('LegionGame-Mode',"SinglePlayer");
+			location.href="training-1.html";
+			//location.href="legion-game.html";
+			//location.href="training-1.html";
+		},500);
+	});
+	_game2_multi.addEventListener("click",()=>{
+		if(_lock)return;
+			_lock=true;
+		setTimeout(()=>{
+			localStorage.setItem('LegionGameID',2);
+			localStorage.setItem('LegionGame-Mode',"MultiPlayer");
+			//location.href="training-1.html";
+			location.href="legion-game.html";
+			//location.href="training-1.html";
+		},500);
+	});
+	
+</script>

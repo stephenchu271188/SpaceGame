@@ -1,0 +1,128 @@
+*SpaceTunnelGame duoc su dung de kiem' ve` dark-energy
+*DeathUniverse-Mission2-Game de kiem' ve` luckywheel-turn
+*Defend+Assault Mode de kiem ve dark-matter
+   Trong DefendMode neu ko chien thang van duoc cong them Cash(cu the xem trong code)
+*Combat Mode...(dang suy nghi)
+*Ko co game mode nao de kiem' ve infinity stone ngoai tru su dung lucky-wheel
+
+*Them hieu ung' khi kill duoc 1 unit giong' nhu cac the loai game FPS.(co ich
+khi thong bao cho player biet da kill dc unit trong cac tinh huong co nhieu
+skill dang thuc hien khien' kho' quan sat)
+*Them thong bao gia' tien cua moi player-ship khi click vao button unlock ma chua
+du level de mua, khien player co the biet de tiet kiem tien mua ship
+*Space-Tunnel: them goi y "hay tieu diet nhung unit co hoa luc manh va hp yeu' truoc" trong cac level ban dau de player ko bi chan' khi ko vuot qua dc level
+*Hien tai trong space-tunnel game ko su dung cac group-id trong unit-mg.js 
+ (cu the trong function get_enemy_ship_group_id_1). ma chu dong set-group-id cho cac enemy-ship (thuc hien trong function init_game_mission cua main class)
+ Cu the nhu sau:
+   -Hien tai lay 10(co the thay doi) lam cac moc ma suc manh cua enemy-ship tang dot bien de lam kho' game. Nen de co the chu dong thi cu qua 10 round se set group id cho enemy-ship sao cho inhibit player-ship ma ko su dung group-id da phan chia san trong unit-mg.js
+*Trong space tunnel game quy tac set-group-id cho cac enemy-ship:
+   Tu 1->10: co the su dung group-id bat ky mien ko inhibit player-ship-1
+   Tu 11->20: group-id cua enemy-ship phai bi player-ship-2 inhibit, muc dich la de
+   kich thich player mua va sung dung player-ship-2
+   Tu 21-30: tuong tu nhu tren, player-ship-3 se inhibit enemy-ship de kich thich player mua va su dung player-ship-3
+   ...
+   Tat nhien player van co the ko mua them ship ma nang cap ship cu(nhung se kho' khan hon vi ship-level cang cao thi cac chi phi nang cap cung cang cao)
+*Set Group_ID cho cac ship:
+   -voi player-ship: trong function create_player_entity trong unit-mg.js(thuc
+    hien ca EquipArmour)
+   -Trong che do combat: set_group_id trong function add_player_ship trong main3.js
+    Van chua thuc hien EquipArmour
+   -enemy-ship trong space-tunnel: ngay trong function init cac enemy-ship
+*Cac loai Armours anti "5 Nguyen To" chi anti duoc cac main-skill, voi cac add-skill thi ko co tac dung
+*Cac passive-skill da so' deu co' sat' thuong rat thap, chu yeu de trang tri
+*LUU Y: 
+         +Ve van de ship-level required cua cac add-skill: 
+              -Chia thanh cac group ro rang
+              -Ship-level-required cua skill yeu' nhat(cung la skill dau tien trong group) nen khac nhau, nhung chech lech ko qua' lon'. VD: Skill 1 trong group 3 yeu cau ship-level la 3 thi Skill 1 trong group 4 se yeu cau ship-level la 5. Muc dich la de khi moi choi player chi co
+              ship-1 thi se ko cung luc kich hoat duoc nhieu skill trong nhieu group khac nhau.Tuong tu, cac skill khac trong cac group cung nen duoc kich hoat tai nhung ship-level khac nhau ko trung` lap
+              -Cac skill thuoc cac group khac nhau ko chech lech qua nhieu ve suc manh, ma chu yeu uu the hon nhau o cach' su dung va hoan` canh? su dung. Do do gia' tien`(price), chi phi nang cap, va ship-level-required cung ko khac nhau qua nhieu
+*Thu tu cac chuc nang,items,skill..... duoc open de tao su kich thich hung phan
+cho player dua tren ship level:
+   +Level 2: -activate rocket 2
+   +Level 3: -activate generate-photon-1 add-skill (SECOND group3)
+   +Level 4: -activate rocket 3
+   +Level 5: -activate spinning-1 add-skill (SECOND group4)
+   +Level 6: -activate left-child-ship 1
+   +Level 7: -activate freeze-rocket-1 add-skill (SECOND group5)
+             -reward 30 infinity stones
+   +Level 8: -activate time-rocket-1 add-skill (SECOND group6)
+             -reward 30 unit dark energy
+   +Level 9: -activate generate-multi-photon-1 (SECOND group3)
+             -reward 30 unit dark matter
+   +Level 10: -activate left-child-ship 2 (AUXILIARY)
+              -activate rocket 4
+   +Level 11: -activate spinning-2 add-skill (SECOND group4)
+   +Level 12: -activate heat-rocket add-skill (SECOND group5)
+   +Level 13: -activate time-rocket-2 add-skill (SECOND group6)
+   +Level 14: -activate generate-multi-photon-2 (SECOND group3)
+   +Level 15: -activate spinning-3 add-skill (SECOND group4)
+              -activate rocket 5
+   +Level 16: -activate multi-rocket-1 add-skill (SECOND group5)
+   +Level 17: -activate time-rocket-3 add-skill (SECOND group6)
+   +Level 18: -activate generate-multi-photon-3 (SECOND group3)
+   +Level 19: -activate spinning-4 add-skill (SECOND group4)
+   +Level 20: -activate left-child-ship 3 (AUXILIARY)
+              -activate rocket 6
+   +Level 21: -activate multi-rocket-2 add-skill (SECOND group5)
+   +Level 22: -activate invisible add-skill (SECOND group2)
+   +Level 23: -activate time-rocket-4 add-skill (SECOND group6)
+   +Level 24: -activate strengthen-default-weapon-1 add-skill(SECOND group2)
+   +Level 25: -activate multi-rocket-3 add-skill (SECOND group5)
+              -activate rocket 7
+   +Level 26: -activate strengthen-rocket-damage-1 add-skill(SECOND group2)
+   +Level 27:
+   +Level 28:
+   +Level 29:
+   +Level 30: -activate left-child-ship 4 (AUXILIARY)
+              -activate rocket 8
+   +Level 31: -activate pass-skill self-healing (PASSIVE)
+   +Level 32:
+   +Level 33:
+   +Level 34:
+   +Level 35:
+   +Level 36:
+   +Level 37:
+   +Level 38:
+   +Level 39:
+   +Level 40:
+
+*Thu tu cac phan duoc ma player duoc nhan khi dat duoc cac account-level tuong ung:
+   +Level 2: -10 green infinity stones
+   +Level 3: -10 dark matter
+   +Level 4: -10 dark enegy 
+   +Level 5:
+   +Level 6:
+   +Level 7:
+   +Level 8:
+   +Level 9:
+   +Level 10:
+   +Level 11:
+   +Level 12:
+   +Level 13:
+   +Level 14:
+
+
+-Co so de tinh' toan' ra Exp can thiet de tang ship-level hay account-level dua 
+vao exp cua moi enemy-unit
+	VD: gia su unit-1 neu tieu diet duoc se nhan duoc 20exp
+	    va de tang ship-level tu 1->2 can 1000 exp
+	    => can phai tieu diet khoang 1000/20=50 ship de tang duoc level
+
+-Co so de tinh' toan' ra $ can thiet de mua mot ship hay item v.v... dua vao
+ $ nhan duoc khi tieu diet enemy-unit 
+ Lay' price cua missile-1 lam co so
+ $ khi tieu diet 1 unit= standardPrice*multiplier
+-------------------------------------------------------------------------
+-$ nhan duoc sau khi tieu diet 1 unit se tang len theo game level, vi du cung 1
+unit tieu diet duoc o level 1 thi $=10, len level 2 $=15....
+   Cu the la duoc tinh toan trong get_enemy_ship_money_reward_1 cua class UnitMG
+   (function nay chi tinh ra $ o game-level 1, con cu the la bao nhieu theo tung
+    game-level thi duoc tinh tai cac game-main class)
+-Hien tai exp nhan duoc sau khi tieu diet 1 unit ko tang theo game level
+   Cu the la duoc tinh toan trong get_enemy_ship_exp_reward_1 cua class UnitMG
+
+   *Can xem xet doan nay trong space-ship-game.js:
+   window.addEventListener('beforeunload',()=>{
+         this._me._inventory.save_data();
+         this._me._ship_package.save_data();
+      });

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./legion-game-unit-option.css">
+<link rel="stylesheet" href="./buttons.css">
+<style>
+<style>
+  /* Style cho overlay */
+  .overlay {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    width: 400px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Style cho box chứa message */
+  .popup-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    text-align: center;
+  }
+
+  /* Style cho nút đóng */
+  .close-btn {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div id="root" class="root">
+<div id="iframe-container-1" class="iframe-container"></div>
+
+<div class="main-container">
+
+<div id="troup-1" class="troup">
+</div>
+<div id="troup-2" class="troup">
+</div>
+<div id="setup-list" class="setup-list"></div>
+	<div style="position:absolute;bottom:2%;left:37%;width:20px;height:10px;" id="save" class="animated-button7">
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <div style="position:absolute;top:10px;left:20px;font-size:20px;">SAVE</div>
+	</div>
+	<div style="position:absolute;bottom:2%;left:50%;width:100px;" id="next" class="animated-button8">
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <div style="position:absolute;top:10px;left:20px;font-size:20px;">NEXT</div>
+	</div>
+
+</div>
+
+</div>  
+
+
+<div class="overlay" id="overlay" style="visibility:hidden">
+				<div class="popup-box">
+					<h2>Warning!</h2>
+					<p id="message-content">Xin chào! Đây là một popup message đẹp.</p>
+					<button class="close-btn" onclick="closePopup()">Close</button>
+				</div>
+			</div>
+
+</body>
+</html>
+
+
+
+<script type="module">
+
+import {GameParameters} from './src/game-parameters.js';
+import {GreatMotherShip} from './src/units/great-mother-ship.js';
+import {MotherShip} from './src/units/mother-ship.js';
+import {MotherRocketShip} from './src/units/mother-rocket-ship.js';
+import {MotherFlashShip} from './src/units/mother-flash-ship.js';
+import {MotherFreezingShip} from './src/units/mother-freezing-ship.js';
+import {MotherHeatingShip} from './src/units/mother-heating-ship.js';
+
+import {LaserShip1} from './src/units/laser-ship-1.js';
+import {FlashShip1} from './src/units/flash-ship-1.js';
+import {RocketShip1} from './src/units/rocket-ship-1.js';
+
+import {WareHouse2} from './src/warehouse2.js';
+
+import {UnitMGLegionGame} from './src/unit-mg-legion-game.js';
+//import {game} from './src/game.js';
+//animated-button12
+//neonShadow
+const total_unit_num=5;
+
+let _root_div=document.getElementById("root");
+
+	let troup_container1=document.getElementById("troup-1");
+	troup_container1.innerHTML="";
+	let troup_container2=document.getElementById("troup-2");
+	troup_container2.innerHTML="";
+	
+	troup_container1.style.top="100px";
+	troup_container2.style.top="350px";
+	
+	let unit_id_list;//luu id cac ship duoc chon
+	//let select_group_id=0;//group id duoc chon
+	
+	let next_btn=document.getElementById("next");
+	next_btn.addEventListener("click",()=>{
+		//alert(unit_id_list);
+		//alert(_mother_ship_id_list);
+		
+		for(let i=0;i<_mother_ship_id_list.length;i++){
+			if(!_mother_ship_id_list[i]||_mother_ship_id_list[i]===null||_mother_ship_id_list[i]===''){
+				openPopup("Please select all units");
+				return false;
+			}
+		}
+		
+		var jsonString = JSON.stringify(_mother_ship_id_list);
+		localStorage.setItem('LegionGameUnitIDList', jsonString);
+		localStorage.setItem('LegionGameID',1);
+		
+		location.href="legion-game.html";
+	});
+	let save_btn=document.getElementById("save");
+	save_btn.addEventListener("click",()=>{
+		let _setup_list_container_2=document.createElement("div");
+		_setup_list_container_2.style.position="absolute";
+		_setup_list_container_2.style.width="100%";
+		_setup_list_container_2.style.height="100%";
+		_setup_list_container_2.style.backgroundColor="rgba(0, 0, 0, 0.7)";
+		_root_div.appendChild(_setup_list_container_2);
+		
+		let _t_close=document.createElement("button");
+		_t_close.classList.add("btn","first");
+		_t_close.style.position="absolute";
+		_t_close.style.top="25px";
+		_t_close.style.right="25px";
+		_t_close.style.width="50px";
+		_t_close.style.height="50px";
+		_t_close.style.fontSize="30px";
+		_t_close.style.fontWeight="900";
+		_t_close.style.borderRadius="50px";
+		_t_close.innerHTML="X";
+		_setup_list_container_2.appendChild(_t_close);
+		_t_close.addEventListener("click",()=>{
+			_setup_list_container_2.remove();
+			_setup_list_container_2=null;
+		});
+		
+		let _t_content=document.createElement("div");
+		_t_content.style.position="absolute";
+		_t_content.style.top="35%";
+		_t_content.style.left="47%";
+		_t_content.style.width="1%";
+		_t_content.style.height="1%";
+		_setup_list_container_2.appendChild(_t_content);
+		
+		for(let i=0;i<total_unit_num;i++){
+			const _button=document.createElement("button");
+			_button.classList.add("btn","first");
+			_button.style.width="50px";
+			_button.style.height="50px";
+			_button.style.marginTop="10px";
+			_button.innerHTML=(i+1);
+			_t_content.appendChild(_button);
+			let _id=i;
+			_button.addEventListener("click",()=>{
+			//alert('SavedGroup-'+_id);
+			//alert(unit_id_list);
+				var jsonString = JSON.stringify(_mother_ship_id_list);
+				localStorage.setItem('SavedGroup-'+_id, jsonString);
+				_t_content.remove();
+			});
+		}
+	});
+	
+	let _setup_list_container=document.getElementById("setup-list");
+
+	const _parameters=new GameParameters({game:null});
+	
+	let _mother_ship_id_list=new Array();
+	let _label_list;
+	
+	 
+	
+	
+	class MyGame{
+		constructor(params){
+		try{
+			this.add_to_function_list_3 =()=>{};
+			this._parameters=_parameters;
+			this.GetUniqueID=()=>{return 9999;};
+			this._unitMG=new UnitMGLegionGame({game:this});
+			this._visibilityGrid=new Array();
+			this._visibilityGrid.UpdateItem=()=>{};
+			this.add_to_update_function_list =()=>{};
+			}catch(e){alert(e.toString());}
+			
+		}
+	}
+	
+	let _game=new MyGame();
+	const _warehouse2=new WareHouse2({game:_game});
+	//try{
+	// _game=new game.Game({game_id:9999});
+	//}catch(e){}
+
+	
+	//try{//de tranh' bi loi
+		_warehouse2.load_data(()=>{
+			init();
+		});
+		//_warehouse2._child_ship_store;
+	//}catch(e){
+		//alert(e.toString());
+	//}
+	
+	
+	function create_setup_list(unit_num){//cac button tuong ung' danh sach cac group
+		
+		for(let i=0;i<unit_num;i++){
+			const _button=document.createElement("button");
+			_button.classList.add("btn","fourth");
+			_button.style.marginLeft="5px";
+			_button.innerHTML=(i+1);
+			_setup_list_container.appendChild(_button);
+			
+			let _id=i;
+			_button.addEventListener("click",()=>{
+				const _rs=get_saved_group(_id);
+			});
+		}
+	}
+	
+	function get_saved_group(_id){
+		var storedDataString = localStorage.getItem('SavedGroup-'+_id);
+		unit_id_list=JSON.parse(storedDataString);
+		if(unit_id_list===null||_id>=unit_id_list.length){
+			return false;
+		}
+		reset_all();
+				//alert(unit_id_list);
+				//alert('SavedGroup-'+_id);
+		for(let j=0;j<unit_id_list.length;j++){
+			select_mother_ship(j,unit_id_list[j]);
+		}
+		return true;
+	}
+	
+	function create_random_legions(unit_num){
+		let _id_list=get_random_type_list(unit_num);
+		for(let i=0;i<_id_list.length;i++){
+			const _type=_id_list[i][0];
+			const _mother_ship_id=_id_list[i][1];
+			
+			const _mother_ship=create_mother_ship(_type,_mother_ship_id);
+			
+			select_mother_ship(i,_mother_ship_id);
+		}
+	}
+	function get_random_type_list(unit_num){
+		let _max_unit_in_type=_parameters._init_mother_ship_num_in_type;//số lượng tối đa unit cùng 1 loại(căn cứ vào game-parameters.js)
+		let _type_list=[0,1,2];
+		
+		let _list1=new Array();
+		for(let i=0;i<_type_list.length;i++){
+			for(let j=0;j<_max_unit_in_type;j++){
+				let _mother_ship_type=_type_list[i];
+				let _mother_ship_id=_parameters.get_mother_ship_id_in_type(_mother_ship_type,j);
+				
+				/*
+					Neu mother-ship chua co' child-ship thi tu dong lay' child-ship trong warehouse2
+				*/
+				/* Doan nay bi loi~ chua ro~ nguyen nhan: khi giam? so' unit trong range slider thi range slider trong warsehouse2 ko tang ma lai giam?
+				const _mother_ship=create_mother_ship(_mother_ship_type,_mother_ship_id);
+				let _child_ship_type1=_mother_ship._child_ship_store.get_the_most_numerous_type();
+				let _child_ship_num1=_mother_ship._child_ship_store.get_unit_num_by_id(_child_ship_type1);
+				let _child_ship_num2=_warehouse2._child_ship_store.get_unit_num_by_id(_child_ship_type1);
+				if(_child_ship_num1===0){
+					
+					let _child_ship_type2=_warehouse2._child_ship_store.get_the_most_numerous_type();
+					    _child_ship_num2=_warehouse2._child_ship_store.get_unit_num_by_id(_child_ship_type2);
+					
+					const _mother_ship_num=_warehouse2.get_mother_ship_num(_mother_ship_type);
+					const _add_num=Math.floor(_child_ship_num2/_mother_ship_num);
+					_child_ship_num1+=_add_num;
+					_child_ship_num2-=_add_num;
+					
+					_mother_ship._child_ship_store.set_unit_num_by_id(_child_ship_type2,_child_ship_num1);
+					_warehouse2._child_ship_store.set_unit_num_by_id(_child_ship_type2,_child_ship_num2);
+					
+					_mother_ship._child_ship_store.save_data();
+					_warehouse2.save_data();
+					
+				}
+				*/
+				//_mother_ship._child_ship_store.save_data();
+				//_warehouse2.save_data();
+				
+				
+				_list1.push([_mother_ship_type,_mother_ship_id]);
+			}			
+		}
+		
+		let _list2=shuffle_array(_list1);
+		
+		let _rs=new Array();
+		for(let i=0;i<unit_num;i++){
+			_rs.push(_list2[i]);
+		}
+		
+		return _rs;
+	}
+	
+	function create_mother_ship(_type,_mother_ship_id){
+		const _Class=_warehouse2.get_mother_ship_class(_type);
+			const _model=new Object();
+			_model.add=()=>{};
+			_model.getWorldPosition=()=>{};
+			const _mother_ship=new _Class({game:_game,model:_model});
+			_mother_ship.set_mother_ship_id(parseInt(_mother_ship_id));
+			_mother_ship.load_child_ship_store();
+			
+			return _mother_ship;
+	}
+	
+	function create_list(troup_container,unit_num,click_event){
+	//alert(_parameters.get_mother_ship_array_id(300000));
+		_mother_ship_id_list=new Array();
+		_label_list=new Array();
+		for(let i=0;i<unit_num;i++){
+		
+			let _id=i;
+			_mother_ship_id_list.push(null);
+		
+			let _unit_container=document.createElement("div");
+			_unit_container.classList.add("character-portrait");
+			
+			let _outer=document.createElement("div");
+			_outer.classList.add("outer");
+			
+			let _inner=document.createElement("div");
+			_inner.classList.add("inner"); 
+			_outer.appendChild(_inner);
+			
+			let _img=document.createElement("img");
+			_img.src="./resources/ships/2.jpg";
+			_inner.appendChild(_img);
+			
+			let _label=document.createElement("label");
+			_label.id="label-"+_id;
+			_outer.appendChild(_label);
+			_label.innerHTML="Empty";
+			_label_list.push(_label);
+			
+			_unit_container.appendChild(_outer);
+			troup_container.appendChild(_unit_container);
+			
+			if(click_event)
+			_img.addEventListener("click",()=>{
+				let _iframe=show_iframe("show-room-2.html",()=>{});
+				_iframe.onload=()=>{
+					let _app=_iframe.contentWindow._get_game_class();
+					_app._show_room._play_btn.innerHTML="OK";
+					_app._graphics.create_divider(_iframe.contentWindow.document.body,"rgba(0, 0, 0, 0.4)");
+					//alert(_mother_ship_id_list[_id]);
+					setTimeout(()=>{
+						if(_mother_ship_id_list[_id]!=null)
+						_app._show_room.select_icon_handle_1(_mother_ship_id_list[_id]);
+						_app._graphics.remove_divider();
+						_app._root_container.style.visibility="visible";
+						_app._show_room._play_btn.style.visibility="visible";
+					},500);
+						
+					_app._show_room.set_play_button_click_fc(()=>{
+						const _ship_id=_app._show_room.get_focus_ship_id();
+						//alert(_parameters.get_mother_ship_array_id(_ship_id));
+						remove_iframe();
+						select_mother_ship(_id,_ship_id)
+					});
+				};
+				
+			});
+		}
+		
+		return _mother_ship_id_list;
+	}
+	
+	function reset_all(){
+	
+		for(let j=0;j<_mother_ship_id_list.length;j++){
+			_mother_ship_id_list[j]=null;
+			_label_list[j].innerHTML="Empty";
+		}
+		_mother_ship_id_list=new Array();
+		//unit_id_list=new Array();
+	}
+	
+	function select_mother_ship(_array_id,_ship_id){
+		for(let j=0;j<_mother_ship_id_list.length;j++){
+			if(_mother_ship_id_list[j]===_ship_id)
+			{
+				_mother_ship_id_list[j]=null;
+				_label_list[j].innerHTML="Empty";
+			}	
+		}
+		_mother_ship_id_list[_array_id]=_ship_id;
+		//let _label=document.getElementById("label-"+_array_id);
+		_label_list[_array_id].innerHTML="Unit-"+_ship_id;
+	}
+	
+	//let _iframeContainer;
+	function show_iframe(_src,_fc){
+
+		let iframeContainer = document.getElementById('iframe-container-1');
+		let _iframeContainer=iframeContainer;
+		iframeContainer.innerHTML='<iframe id="iframe-1"></iframe><button id="iframe-close-button">Close</button>';
+		iframeContainer.style.zIndex="999999999999999";	
+		let _iframe=document.getElementById("iframe-1");
+		_iframe.src=_src;
+	
+		let closeButton = document.getElementById('iframe-close-button');
+		//const _iframe = document.querySelector('iframe');
+
+		closeButton.addEventListener('click', () => {
+			remove_iframe();
+			_fc();
+		});
+		iframeContainer.style.display = 'block';
+		iframeContainer.style.zIndex="99999999";
+	
+		return _iframe;
+	
+	};
+	function remove_iframe(){
+		let iframeContainer = document.getElementById('iframe-container-1');
+		iframeContainer.innerHTML="";
+		iframeContainer.style.display = 'none';
+	
+	};
+	
+	function shuffle_array(array)
+	{
+		var currentIndex = array.length, temporaryValue, randomIndex;
+
+		while (0 !== currentIndex) {
+
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+	};
+	
+	
+	
+	function init(){
+		create_list(troup_container1,total_unit_num,false);
+		unit_id_list=create_list(troup_container2,total_unit_num,true);
+		create_setup_list(total_unit_num);
+		
+		for(let i=0;i<total_unit_num;i++){//lay' du lieu saved-group
+			const _rs=get_saved_group(i);
+			if(_rs)return;
+		}
+		create_random_legions(total_unit_num);//Neu ko tim duoc du lieu saved-group nao thi chon random
+	};
+	
+	
+	function window_resize_handle(){
+		
+		let _windowW=window.innerWidth;
+		let _windowH=window.innerHeight;
+		//alert(_windowW);alert(_windowH);
+		const _standardW=1536;
+		const _standardH=743;
+		
+		_root_div.style.width=_standardW+"px";
+		_root_div.style.height=_standardH+"px";
+		_root_div.style.transformOrigin = "top left";
+		
+		const _sclX=_windowW/_standardW;
+		const _sclY=_windowH/_standardH;
+		
+		_root_div.style.transform = "scaleX("+_sclX+") scaleY("+_sclY+")";
+		
+	}
+	
+	
+	
+	
+	window_resize_handle();
+		let _fc=()=>{
+			window_resize_handle();
+		};
+		window.addEventListener("resize", _fc);
+	
+</script>
+
+<script>
+function openPopup(content) {
+		document.getElementById("root").style.visibility="hidden";
+		
+		document.getElementById("message-content").innerHTML=content;
+		
+		var overlay = document.getElementById("overlay");
+		overlay.style.visibility = "visible";
+		overlay.style.opacity = 1;
+	}
+
+ 
+  function closePopup() {
+	document.getElementById("root").style.visibility="visible";
+    var overlay = document.getElementById("overlay");
+    overlay.style.visibility = "hidden";
+    overlay.style.opacity = 0;
+  }
+</script>

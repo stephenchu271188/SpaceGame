@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Game UI</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.8/css/ionicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Orbitron|Questrial'>
+<style>
+@charset "UTF-8";
+html {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  font-family: "Orbitron", "Ionicons", sans-serif;
+  color: #ffffff;
+  cursor: default;
+  font-size: 2rem;
+  user-select: none;
+  overflow: hidden;
+}
+
+body{
+  background: linear-gradient(60deg, #080826 25%, #0F0E35 100%);
+  background-image: url("resources/bg/planets/1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  transform:scale(0.9);
+  cursor:url("./resources/cursor/3.png"), auto;
+}
+
+.debug {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+}
+
+.page {
+  position: absolute;
+  top:60px;
+  left: 300px;
+  width: 900px;
+  height: 690px;
+  animation: scaleIn 0.5s;
+  transition: 0.25s;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  border:#f0f4f6 solid 1px;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7); 
+  transition: box-shadow 0.3s ease-in-out; 
+  //transform-origin:0px 0px;
+}
+
+.page.home.active {
+  filter: blur(3px);
+  pointer-events: none;
+  //transform-origin: 0px 0px;
+  //transform: perspective(1000px) rotateY(35deg) translateX(-20vw);
+  
+}
+
+
+.list {
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  width: 350px;
+  height: 270px;
+  
+}
+.list .icon {
+  position: absolute;
+  top: 0;
+  left: -350px;
+  width: 350px;
+  height: 270px;
+  line-height: 270px;
+  text-align: center;
+  font-size: 6.5em;
+  color: #CDCCFF;
+  text-shadow: 5px 5px 100px #4C4C99;
+}
+.list .icon:before {
+  content: "";
+}
+.list .icon.s:before {
+  content: "";
+}
+.list .icon.l:before {
+  content: "";
+}
+.list .icon.l:after {
+  content: "";
+  margin-left: -0.2em;
+  font-size: 0.65em;
+}
+.list .icon.o:before {
+  content: "";
+}
+.list .selector {
+  position: absolute;
+  width: 350px;
+  height: 90px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px #46467F;
+  animation: bolder 1.5s ease-in-out infinite;
+  pointer-events: none;
+  transition: 0.15s;
+  visibility:hidden;
+}
+.list .item {
+  position: relative;
+  width: 350px;
+  height: 90px;
+  text-indent: 25px;
+  line-height: 90px;
+  box-shadow: inset 0 0 0 2px transparent;
+  cursor: pointer;
+  //overflow: hidden;
+  transition: 0.15s;
+  
+}
+.list .item .sub {
+  position: absolute;
+  font-size: 50%;
+  line-height: 0px;
+  transform: translateY(-40px);
+  opacity: 0;
+  font-weight: bolder;
+  transition: 0.15s;
+}
+.list .item:before {
+  content: "";
+  position: absolute;
+  right: 30px;
+  line-height: 90px;
+  font-family: "Ionicons";
+  color: #4C4C99;
+  text-shadow: 0 0 30px #4C4C99;
+  transform-origin: left center;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: 0.15s;
+}
+.list .item.active {
+  line-height: 65px;
+  color: #CDCCFF;
+  
+  text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff,
+        0 0 80px #0ff;
+}
+.list .item.active .sub {
+  transform: translateY(0px);
+  opacity: 1;
+  color: #4C4C99;
+  text-shadow: none;
+}
+.list .item.active:before {
+  transform: scale(1);
+  right: 25px;
+  opacity: 1;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(1.3);
+    filter: blur(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes bolder {
+  0%, 100% {
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px #46467F;
+  }
+  50% {
+    border-radius: 15px;
+    box-shadow: inset 0 0 0 2px #4C4C99;
+    background: rgba(255, 255, 255, 0.015);
+  }
+}
+
+.ag-format-container {
+  width: 1142px;
+  margin: 0 auto;
+}
+
+.ag-meteor-block {
+  height: 100%;
+  width: 100%;
+  background-position: 100% 0;
+  background-size: cover;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  top: 0;
+  left: 0;
+}
+.ag-meteor-block,
+.meteor__item {
+  position: absolute;
+}
+.meteor__item-img {
+  width: 600px;
+  height: 600px;
+  background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/meteors-right/images/meteors-sprite.png);
+  background-size: auto 100%;
+
+  -webkit-animation: an-frame-animation 3s steps(48) infinite;
+  -moz-animation: an-frame-animation 3s steps(48) infinite;
+  -o-animation: an-frame-animation 3s steps(48) infinite;
+  animation: an-frame-animation 3s steps(48) infinite;
+
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+@-webkit-keyframes an-frame-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -28800px 0;
+  }
+}
+
+@-moz-keyframes an-frame-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -28800px 0;
+  }
+}
+
+@-o-keyframes an-frame-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -28800px 0;
+  }
+}
+
+@keyframes an-frame-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -28800px 0;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .ag-format-container {
+    width: 96%;
+  }
+
+}
+
+@media only screen and (max-width: 639px) {
+
+}
+
+@media only screen and (max-width: 479px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .ag-format-container {
+    width: 750px;
+  }
+
+}
+
+@media (min-width: 980px) and (max-width: 1161px) {
+  .ag-format-container {
+    width: 960px;
+  }
+
+}
+
+.alert-message {line-height:20px; font-size:15px;padding-bottom: 12px;}
+h1{color:#e35154 !important; font-size:18px; margin-left:20px; margin-bottom:20px;font-weight:700; text-transform: uppercase;}
+
+body a, body #test {
+  color: #fff;
+}
+
+.unstyled {
+  margin: 0;
+  list-style: none;
+}
+.unstyled a, .unstyled #test {
+  width: 120px;
+  text-decoration: none;
+  padding: .5em 1em;
+  background-color: #213347;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: .5em;
+  font-size:15px;
+  font-weight:300;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.unstyled a:hover, .unstyled #test:hover {
+  background-color: #f25c5d;
+}
+
+.cf, .alert {
+  *zoom: 1;
+}
+.cf:before, .alert:before, .cf:after, .alert:after {
+  display: table; 
+  content: "";
+  line-height: 0;
+}
+.cf:after, .alert:after {
+  clear: both;
+}
+
+#alerts {
+  width: 400px;
+  top: 12px;
+  right: 40%;
+  position: fixed;
+  z-index: 9999;
+  list-style: none;
+}
+
+.alert {
+  width: 100%;
+  margin-bottom: 8px;
+  display: block;
+  position: relative;
+  border-left: 4px solid;
+  right: -50px;
+  opacity: 0;
+  line-height: 1;
+  padding: 0;
+  transition: right 400ms, opacity 400ms, line-height 300ms 100ms, padding 300ms 100ms;
+  display: table;
+}
+
+.alert:hover {
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.open {
+  right: 0;
+  opacity: 1;
+  line-height: 2;
+  padding: 3px 15px;
+  transition: line-height 200ms, padding 200ms, right 350ms 200ms, opacity 350ms 200ms;
+}
+
+.alert-title {
+  font-weight: bold;
+}
+
+.alert-block {
+  width: 80%;
+  width: -webkit-calc(100% - 10px);
+  width: calc(100% - 10px);
+  text-align: left;
+}
+.alert-block em, .alert-block small {
+  font-size: .75em;
+  opacity: .75;
+  display: block;
+}
+
+.alert i {
+  font-size: 2em;
+  width: 1.5em;
+  max-height: 48px;
+  top: 50%;
+  margin-top: -12px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.alert-success {
+  color: #fff;
+  border-color: #539753;
+  background-color: #8fbf2f;
+}
+
+.alert-error {
+  color: #fff;
+  border-color: #dc4a4d;
+  background-color: #f25c5d;
+}
+
+.alert-trash {
+  color: #fff;
+  border-color: #dc4a4d;
+  background-color: #f25c5d;
+}
+
+.alert-info {
+  color: #fff;
+  border-color: #076d91;
+  background-color: #3397db;
+}
+
+.alert-warning {
+  color: #fff;
+  border-color: #dd6137;
+  background-color: #f7931d;
+}
+
+.status-icon{
+	width:50px;
+	position:absolute;
+	left:-60px;
+	top:10px;
+	filter:brightness( 190% );
+}
+.loader {
+  width: 120px;
+  height: 22px;
+  color: turquoise;
+  border: 2px solid white;
+  position: relative;
+  margin-left:350px;
+  margin-top:-56px;
+  transform:skewX(-20deg);
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 calc(100% - var(--progress, 0%)) 0 0;
+  border-radius: inherit;
+  background: currentColor;
+  transition: inset 0.4s ease; /* cho mượt */
+}
+@keyframes l6 {
+    100% {inset:0}
+}
+</style>
+
+</head>
+<body>
+
+<div id="root" style="position:absolute;top:0px;left:0px;width:100%;height:100%;transform-origin:0px 0px;">
+
+
+<!-- partial:index.partial.html -->
+<div class="page home" id="main-panel">
+	<div class="list">
+		<div class="icon"></div>
+		<div class="selector"></div>
+		<div id="game1-single" class="item" data-mode="s"><div class="status-icon"></div>Planet Defend<div class="sub">Single Player</div>
+		</div>
+		<div id="game1-multi" class="item" data-mode="l"><div class="status-icon"></div>Combat<div class="sub">Multiplayer</div></div>
+		<div id="game1-tunnel" class="item" data-mode="s"><div class="status-icon"></div>Space Tunnel<div class="sub">Single Player</div></div>
+		<div id="game1-raid" class="item" data-mode="s"><div class="status-icon"></div>Assault<div class="sub">Single Player</div></div>
+		<div id="game1-2d" class="item" data-mode="s"><div class="status-icon"></div>Defense<div class="sub">Multiplayer Player</div></div>
+		<div id="game1-discovery" class="item" data-mode="s"><div class="status-icon"></div>Explore<div class="sub">Multiplayer Player</div></div>
+	</div>
+</div>
+
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script>
+ 
+  var Alert = undefined;
+
+(function(Alert) {
+  var alert, error, trash, info, success, warning, _container;
+  info = function(message, title, options) {
+    return alert("info", message, title, "fa fa-info-circle", options);
+  };
+  warning = function(message, title, options) {
+    return alert("warning", message, title, "fa fa-warning", options);
+  };
+  error = function(message, title, options) {
+    return alert("error", message, title, "fa fa-exclamation-circle", options);
+  };
+
+  trash = function(message, title, options) {
+    return alert("trash", message, title, "fa fa-trash-o", options);
+  };
+
+  success = function(message, title, options) {
+    return alert("success", message, title, "fa fa-check-circle", options);
+  };
+  alert = function(type, message, title, icon, options) {
+    var alertElem, messageElem, titleElem, iconElem, innerElem, _container;
+    if (typeof options === "undefined") {
+      options = {};
+    }
+    options = $.extend({}, Alert.defaults, options);
+    if (!_container) {
+      _container = $("#alerts");
+      if (_container.length === 0) {
+        _container = $("<ul>").attr("id", "alerts").appendTo($("body"));
+      }
+    }
+    if (options.width) {
+      _container.css({
+        width: options.width
+      });
+    }
+    alertElem = $("<li>").addClass("alert").addClass("alert-" + type);
+	
+	
+    setTimeout(function() {
+      alertElem.addClass('open');
+    }, 1);
+    if (icon) {
+      iconElem = $("<i>").addClass(icon);
+      alertElem.append(iconElem);
+    }
+    innerElem = $("<div>").addClass("alert-block");
+    //innerElem = $("<i>").addClass("fa fa-times");
+    alertElem.append(innerElem);
+    if (title) {
+      titleElem = $("<div>").addClass("alert-title").append(title);
+      innerElem.append(titleElem);
+      
+    }
+    if (message) {
+      messageElem = $("<div>").addClass("alert-message").append(message);
+      //innerElem.append("<i class="fa fa-times"></i>");
+      innerElem.append(messageElem);
+      //innerElem.append("<em>Click to Dismiss</em>");
+//      innerElemc = $("<i>").addClass("fa fa-times");
+
+    }
+    if (options.displayDuration > 0) {
+      setTimeout((function() {
+        leave();
+      }), options.displayDuration);
+    } else {
+      innerElem.append("<em>Click to Dismiss</em>");
+    }
+    alertElem.on("click", function() {
+      leave();
+    });
+
+    function leave() {
+      alertElem.removeClass('open');
+      alertElem.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+        return alertElem.remove();
+      });
+    }
+    return _container.prepend(alertElem);
+  };
+  Alert.defaults = {
+    width: "",
+    icon: "",
+    displayDuration: 3000,
+    pos: ""
+  };
+  Alert.info = info;
+  Alert.warning = warning;
+  Alert.error = error;
+  Alert.trash = trash;
+  Alert.success = success;
+  return _container = void 0;
+
+})(Alert || (Alert = {}));
+
+this.Alert = Alert;
+
+$('#test').on('click', function() {
+  Alert.info('Message');
+});
+</script>
+  <script>
+  
+  function getAbsolutePosition(element) {
+  const rect = element.getBoundingClientRect();
+  return {
+    x: rect.left + window.scrollX,
+    y: rect.top + window.scrollY
+  };
+}
+  
+  // Prevent right-click
+$(document).bind("contextmenu", function(event) {
+	event.preventDefault();
+});
+
+// Setup
+$('.icon').addClass('s');
+$('.item').first().addClass('active');
+
+// Mode selection
+$('.item').hover(function(){//alert(getAbsolutePosition(this).y);
+	try{
+		const _winW=window.innerWidth;
+		const _winH=window.innerHeight;
+		const _sclW=parseFloat(_winW/1536);
+		const _sclH=parseFloat(_winH/743);
+	var modeId = $(this).attr('data-mode');
+	var top = $(this).position().top;//alert(parseInt(top*_sclH));
+	$('.selector').css({'top' : top + 'px'});
+	$('.item').removeClass('active');
+	$(this).addClass('active');
+	$('.icon').removeClass('s l o');
+	$('.icon').addClass(modeId);
+	}catch(e){
+		alert(e.stack);
+	}
+});
+
+
+(function ($) {
+  $(function () {
+
+    function index_defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor)
+      }
+    }
+
+    var index_Meteor = function () {
+      function Meteor(options) {
+        var _this = this;
+        !function (instance, Constructor) {
+          if (!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")
+        }(this, Meteor), this.options = options, this.container = $("#".concat(this.options.container)), this.containerWidth = this.container.width(), this.containerHeight = this.container.height(), setInterval((function () {
+          _this.init()
+        }), 500)
+      }
+
+      var Constructor, protoProps, staticProps;
+      return Constructor = Meteor, (protoProps = [{
+        key: "init", value: function () {
+          var _this2 = this, id = "".concat(this.options.container, "_").concat(this.getRandomInt(0, 10000));
+          if (0 === $("#".concat(id)).length) {
+            var index = this.getRandomInt(0, this.options.meteors.length - 1), meteor = this.options.meteors[index];
+            if (meteor.count <= meteor.maxCount) {
+              meteor.count++, this.container.append('\n<div id="'.concat(id, '" class="meteor__item">\n<div class="meteor__item-img"></div>\n</div>\n'));
+
+              var topOrLeft = this.getRandomInt(0, 1),
+                top = this.getRandomInt(0, this.containerHeight),
+                left = this.getRandomInt(0, this.containerWidth),
+                zIndex = 10 * meteor.zIndex,
+                size = meteor.size,
+                transition = meteor.speed;
+
+              $("#".concat(id)).css({
+                left: topOrLeft ? "100%" : "".concat(left, "px"),
+                top: topOrLeft ? "".concat(top + 1000, "px") : 0,
+                transition: "transform ".concat(transition, "s linear"),
+                transform: "translate(".concat(size, "px, -").concat(size, "px"),
+                "z-index": zIndex
+              });
+
+              $("#".concat(id)).find(".meteor__item-img").css({
+                width: "".concat(size, "px"),
+                height: "".concat(size, "px")
+              });
+
+              setTimeout((function () {
+                $("#".concat(id)).css({transform: "translate(-".concat(_this2.containerHeight - (topOrLeft ? top : 0), "px, ").concat(_this2.containerHeight - (topOrLeft ? top : 0), "px")})
+              }), 100);
+
+              setTimeout((function () {
+                $("#".concat(id)).remove(), meteor.count--
+              }), 1000 * transition);
+            }
+          }
+        }
+      }, {
+        key: "getRandomInt", value: function (min, max) {
+          return Math.floor(min + Math.random() * (max + 1 - min))
+        }
+      }, {
+        key: "isScrolledIntoView", value: function (elem) {
+          var docViewTop = $(window).scrollTop(), docViewBottom = docViewTop + $(window).height(), elemTop = elem.offset().top;
+          return elemTop + elem.height() >= docViewTop && elemTop <= docViewBottom
+        }
+      }]) && index_defineProperties(Constructor.prototype, protoProps), staticProps && index_defineProperties(Constructor, staticProps), Meteor
+    }();
+
+    new index_Meteor({
+      container: "js-meteor-block",
+      meteors: [{size: 600, speed: 5, maxCount: 2, count: 0, zIndex: 10}, {
+        size: 300,
+        speed: 10,
+        maxCount: 3,
+        count: 0,
+        zIndex: 4
+      }, {size: 150, speed: 15, maxCount: 5, count: 0, zIndex: 0}]
+    });
+
+  });
+})(jQuery);
+
+
+  </script>
+
+</body>
+</html>
+
+<script src="./src/discovery-home-page.js" type="module">
+</script>

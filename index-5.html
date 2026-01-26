@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="base.css">
+  <link rel="stylesheet" type="text/css" href="radar.css">
+  <link rel="stylesheet" type="text/css" href="buttons.css">
+  <style>
+	
+	#time-container{
+		position:absolute;
+		width:80px;
+		height:40px;
+		top:5px;
+		left:730px;
+		background: linear-gradient(to bottom, blue, white, turquoise);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-size: 26px;
+		font-weight: bold;
+	}
+	#game-infor{
+		position:absolute;
+		width:120px;
+		height:40px;
+		bottom:5px;
+		left:720px;
+		background: linear-gradient(to bottom, black, turquoise, white);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-size: 24px;
+		font-weight: bold;
+		
+	}
+	
+.iframe-container {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  left:10%;
+  top:10%;
+ 
+  border: 2px solid #3498db; /* Màu border và độ dày border */
+  border-radius: 10px; /* Độ cong của border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho iframe-container */
+  overflow: hidden; /* Ẩn phần overflow */
+  
+  display:none;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#iframe-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index:99999999999;
+  min-width: 420px; 
+  min-height: 45px;
+  transform: translate(-50%, -50%);
+  border: 1px solid transparent;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  width: 32vw;
+  height: 18vw; /* 16:9 aspect ratio */
+  overflow: hidden;
+  border-width: 3px;
+  border-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000);
+  border-image-slice: 1;
+  border-image-source: unset;
+  animation: borderGradient 5s linear infinite;
+  resize: both;
+}
+
+@keyframes borderGradient {
+  0% {
+    border-image-source: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000);
+  }
+  25% {
+    border-image-source: linear-gradient(45deg, #ff0000, #0000ff, #00ff00, #ff0000);
+  }
+  50% {
+    border-image-source: linear-gradient(45deg, #0000ff, #ff0000, #00ff00, #0000ff);
+  }
+  75% {
+    border-image-source: linear-gradient(45deg, #00ff00, #ff0000, #0000ff, #00ff00);
+  }
+  100% {
+    border-image-source: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000);
+  }
+}
+
+.modal-header {
+  position: relative;
+  padding: 10px;
+  background-color: #1a1a1a;
+  color: #00ff00;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  height: 25px;
+}
+
+.modal-header .close-icon{
+  font-size: 20px;
+  cursor: pointer;
+  color: #1a1a1a;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff0000;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.modal-header .minimize-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #1a1a1a;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eeff00;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-header .close-icon:hover{
+  background-color: #ff3300;
+  transform: scale(1.2) rotate(45deg);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.modal-header .minimize-icon:hover {
+  background-color: #3cff00;
+  transform: scale(1.2) rotate(45deg);
+  box-shadow: 0 0 10px rgba(21, 255, 0, 0.7);
+}
+
+.modal-content {
+  padding: 20px;
+  color: #fff;
+  background-color: #1691E6;
+  height: calc(100% - 85px);
+}
+
+.modal-hbutton {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+  position: absolute;
+  right: 15px;
+}
+
+.modal-htext {
+  margin: 0 auto;
+  user-select: none;
+}
+
+
+
+.output{
+    position: relative;
+    width: 100px;
+		padding-top: 10px;
+    height: 30px;
+    margin-left: 50%;
+    font-family: cursive;
+    font-size: 16px;
+    line-height: 20px;
+    color: #6441A5;
+    text-align: center;
+   
+    -webkit-transition: opacity .3s ease-in-out 0s;
+    transition: opacity .3s ease-in-out 0s;
+}
+.rangeslider{
+		--active: #5628EE;
+    --value: #fff;
+    --line: #CDD9ED;
+    touch-action: none;
+	 -webkit-appearance: none;
+ 	 appearance: none;
+    user-select: none;
+    width: 320px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--line);
+    position: relative;
+	
+		&::-webkit-slider-thumb{
+		 -webkit-appearance: none; 
+  		appearance: none;
+  		width: 15px;
+  		height: 15px; 
+			background: #F5F9FF;
+			border: 2px solid #6441A5; 
+  		cursor: pointer; 
+			border-radius: 18px;
+			transition: .5s ease;
+			
+			&:focus , &:active{
+				padding: 8px;
+			}
+	}
+	
+	
+	&:focus , &:active{
+		outline: none;
+	}
+}
+
+
+
+.sp-container {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background: -webkit-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+	background: -moz-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+	background: -ms-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+	background: radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+}
+.sp-content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	z-index: 1000;
+}
+.sp-container h2 {
+	position: absolute;
+	top: 50%;
+	line-height: 100px;
+	height: 90px;
+	margin-top: -50px;
+	font-size: 90px;
+	width: 100%;
+	text-align: center;
+	color: transparent;
+	-webkit-animation: blurFadeInOut 3s ease-in backwards;
+	-moz-animation: blurFadeInOut 3s ease-in backwards;
+	-ms-animation: blurFadeInOut 3s ease-in backwards;
+	animation: blurFadeInOut 3s ease-in backwards;
+}
+.sp-container h2.frame-1 {
+	-webkit-animation-delay: 0s;
+	-moz-animation-delay: 0s;
+	-ms-animation-delay: 0s;
+	animation-delay: 0s;
+}
+/*
+.sp-container h2.frame-2 {
+	-webkit-animation-delay: 3s;
+	-moz-animation-delay: 3s;
+	-ms-animation-delay: 3s;
+	animation-delay: 3s;
+}
+*/
+.sp-container h2.frame-2 {
+	font-size: 180px;
+	-webkit-animation-delay: 3s;
+	-moz-animation-delay: 3s;
+	-ms-animation-delay: 3s;
+	animation-delay: 3s;
+}
+
+.sp-container h2.frame-3 {
+	-webkit-animation-delay: 6s;
+	-moz-animation-delay: 6s;
+	-ms-animation-delay: 6s;
+	animation-delay: 6s;
+}
+.sp-container h2.frame-4 {
+	font-size: 200px;
+	-webkit-animation-delay: 9s;
+	-moz-animation-delay: 9s;
+	-ms-animation-delay: 9s;
+	animation-delay: 9s;
+}
+
+
+/**/
+
+@-webkit-keyframes blurFadeInOut {
+	0% {
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		-webkit-transform: scale(1.3);
+	}
+	20%, 75% {
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		-webkit-transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		text-shadow: 0px 0px 50px #fff;
+		-webkit-transform: scale(0);
+	}
+}
+@-webkit-keyframes blurFadeIn {
+	0% {
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		-webkit-transform: scale(1.3);
+	}
+	50% {
+		opacity: 0.5;
+		text-shadow: 0px 0px 10px #fff;
+		-webkit-transform: scale(1.1);
+	}
+	100% {
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		-webkit-transform: scale(1);
+	}
+}
+@-webkit-keyframes fadeInBack {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(0);
+	}
+	50% {
+		opacity: 0.4;
+		-webkit-transform: scale(2);
+	}
+	100% {
+		opacity: 0.2;
+		-webkit-transform: scale(5);
+	}
+}
+@-webkit-keyframes fadeInRotate {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(0) rotate(360deg);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1) rotate(0deg);
+	}
+}
+/**/
+
+@-moz-keyframes blurFadeInOut {
+	0% {
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		-moz-transform: scale(1.3);
+	}
+	20%, 75% {
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		-moz-transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		text-shadow: 0px 0px 50px #fff;
+		-moz-transform: scale(0);
+	}
+}
+@-moz-keyframes blurFadeIn {
+	0% {
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		-moz-transform: scale(1.3);
+	}
+	100% {
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		-moz-transform: scale(1);
+	}
+}
+@-moz-keyframes fadeInBack {
+	0% {
+		opacity: 0;
+		-moz-transform: scale(0);
+	}
+	50% {
+		opacity: 0.4;
+		-moz-transform: scale(2);
+	}
+	100% {
+		opacity: 0.2;
+		-moz-transform: scale(5);
+	}
+}
+@-moz-keyframes fadeInRotate {
+	0% {
+		opacity: 0;
+		-moz-transform: scale(0) rotate(360deg);
+	}
+	100% {
+		opacity: 1;
+		-moz-transform: scale(1) rotate(0deg);
+	}
+}
+/**/
+
+@keyframes blurFadeInOut {
+	0% {
+		opacity: 0;
+		text-shadow:
+    0 0 4px #fff,  /* inner glow */
+    0 0 6px #fff,  /* inner glow */
+    0 0 8px #fff,  /* inner glow */
+    0 0 10px #23EEF1, /* outer glow */
+    0 0 12px #23EEF1, /* outer glow */
+    0 0 14px #23EEF1, /* outer glow */
+    0 0 16px #ff00ff, /* outer glow */
+    0 0 18px #ff0000; /* outer glow */
+		transform: scale(1.3);
+	}
+	20%, 75% {
+		opacity: 1;
+		text-shadow:
+    0 0 4px #fff,  /* inner glow */
+    0 0 6px #fff,  /* inner glow */
+    0 0 8px #fff,  /* inner glow */
+    0 0 10px #23EEF1, /* outer glow */
+    0 0 12px #23EEF1, /* outer glow */
+    0 0 14px #23EEF1, /* outer glow */
+    0 0 16px #ff00ff, /* outer glow */
+    0 0 18px #ff0000; /* outer glow */
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		text-shadow:
+    0 0 4px #fff,  /* inner glow */
+    0 0 6px #fff,  /* inner glow */
+    0 0 8px #fff,  /* inner glow */
+    0 0 10px #23EEF1, /* outer glow */
+    0 0 12px #23EEF1, /* outer glow */
+    0 0 14px #23EEF1, /* outer glow */
+    0 0 16px #ff00ff, /* outer glow */
+    0 0 18px #ff0000; /* outer glow */
+		transform: scale(0);
+	}
+}
+@keyframes blurFadeIn {
+	0% {
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		transform: scale(1.3);
+	}
+	50% {
+		opacity: 0.5;
+		text-shadow: 0px 0px 10px #fff;
+		transform: scale(1.1);
+	}
+	100% {
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		transform: scale(1);
+	}
+}
+@keyframes fadeInBack {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	50% {
+		opacity: 0.4;
+		transform: scale(2);
+	}
+	100% {
+		opacity: 0.2;
+		transform: scale(5);
+	}
+}
+@keyframes fadeInRotate {
+	0% {
+		opacity: 0;
+		transform: scale(0) rotate(360deg);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1) rotate(0deg);
+	}
+}
+
+/*---------------------------------------------------*/
+
+:root {
+    --slider-border: 2px;
+    --slider-height: 1.5rem;
+    --slider-max-width: 100%;
+    --slider-width: 20rem;
+    --thumb-margin: 0.2rem;
+    --thumb-size: calc(var(--slider-height) - (2 * var(--thumb-margin)));
+}
+
+/* slider container */
+.range-slider {
+    display: inline-block;
+    max-width: var(--slider-max-width);
+    position: relative;
+	background-color: rgba(0, 0, 0, 0.0);
+}
+
+/* slider track */
+.range-slider > .slider {
+    border: var(--slider-border) solid;
+    display: block;
+    height: var(--slider-height);
+    max-width: var(--slider-max-width);
+    position: relative;
+    width: var(--slider-width);
+    z-index: 1;
+	background-color: rgba(0, 0, 0, 0.0);
+	
+}
+.range-slider > input[type="range"]:focus + .slider {
+    outline: 2px solid;
+    outline-offset: 2px;
+	background-color: rgba(0, 0, 0, 0.0);
+}
+
+/* slider thumb */
+.range-slider > .slider > .thumb {
+    display: block;
+    height: var(--slider-height);
+    position: absolute;
+    width: var(--slider-height);
+}
+.range-slider > .slider > .thumb::before {
+    border: 2px solid;
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: var(--thumb-size);
+    margin: var(--thumb-margin);
+    width: var(--thumb-size);
+}
+
+/* range input */
+.range-slider > input[type="range"] {
+    -webkit-appearance: none;
+    height: var(--slider-height);
+    margin: var(--slider-border);
+    max-width: var(--slider-max-width);
+    opacity: 0;
+    position: absolute;
+    width: var(--slider-width);
+    z-index: 2;
+	background-color: rgba(0, 0, 0, 0.0);
+}
+.range-slider > input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    display: block;
+    height: var(--slider-height);
+    width: var(--slider-height);
+	background-color: rgba(0, 0, 0, 0.0);
+}
+.range-slider > input[type="range"]::-moz-range-thumb {
+    display: block;
+    height: var(--slider-height);
+    width: var(--slider-height);
+	background-color: rgba(0, 0, 0, 0.0);
+}
+      
+.range-slider > .slider {
+    background-color: rgba(0, 0, 0, 0.0);
+    border-color: #ffffff;
+    border-radius: var(--slider-height);
+}
+.range-slider > input[type="range"]:focus + .slider {
+    background-color: rgba(0, 0, 0, 0.0);
+    outline-color: #06f;
+}
+
+.range-slider > .slider > .thumb::before {
+    background: linear-gradient(#ccc, #888);
+    border-color: #333;
+    border-radius: var(--slider-height);
+}
+/*---------------------------------------------------*/
+  </style>
+</head>
+<body>
+  <div id="target"></div>
+  <div id="root" style="width:100%;height: 100%;">
+  
+  
+  <!-- HP BAR -->
+<div id="hpBarWrapper" class="hpBarWrapper">
+	<div class="bar">
+		<div class="barInner">
+			<span class="name">HP</span>
+			<span class="value"></span>
+			<div class="state"></div>
+			<div class="background"></div>
+		</div>
+	</div>
+</div>
+<!-- END HP BAR -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+
+  
+  <!-- Axis XYZ -->
+	<div style="position:absolute;right:0px;bottom:0px;width:200px;height:200px;" id="axis-container"></div>
+  <!-- End Axis -->
+  
+  <!-- MANA Bar -->
+  <div id="mana-bar" class="mana-bar" >
+  <svg width="100" height="100" viewBox="0 0 200 200" style="border-radius:50px;box-shadow: 0 0 10px 5px #3E8BFB;">
+    <g id="manaBarInner" transform="translate(100,100)">
+      <!-- generated health bar sections will go here -->
+    </g>
+    <circle cx="100" cy="100" r="70" fill="#000000" />
+  </svg>
+
+  <p id="manaBarText"></p>
+  <img src='./resources/gif/energy-3.gif' style="position:absolute;top:25px;left:25px;width:50px;height:50px;border-radius:50px;box-shadow: 0 0 10px 5px #3E8BFB;"/>
+</div>
+<!-- End MANA Bar -->
+  
+  <!-- Radar -->
+  <!-- 
+<div class="radar-container">
+	<div class="metal rim">
+		
+		<div id="radar-frame" class="radar">
+			<div class="grid"></div>
+			<div class="scanner"></div>
+			
+		</div>
+	</div>
+</div>
+-->
+<!-- End Radar -->
+
+<div id="iframe-container-1" class="iframe-container"></div>
+
+
+<div class="modal" id="cyberModal1">
+  <div class="modal-header">
+    <h4 id="modal-htext" class="modal-htext"></h4>
+    <div class="modal-hbutton">
+      <span class="minimize-icon">-</span>
+      <span class="close-icon">X</span>
+    </div>
+  </div>
+  <div class="modal-content">
+   
+  </div>
+</div>
+
+<div id="time-container"></div>
+<div id="game-infor"></div>
+<!--
+<div id="CSS2DRenderer" style="position:absolute;width:100%;height:100%;"></div>
+
+<img id="starlist-img" width=50 height=50 style="visibility:hidden;position:absolute;right:0px;top:25%;border:turquoise 2px solid;" src="./resources/icons/newmap.png"/>
+<img id="inventory-img" width=50 height=50 style="visibility:hidden;position:absolute;right:0px;top:35%;border:turquoise 2px solid;" src="./resources/icons/inventory.png"/>
+<img id="home-img" width=50 height=50 style="visibility:hidden;position:absolute;right:0px;top:45%;border:turquoise 2px solid;" src="./resources/icons/home.png"/>
+-->
+<div style="position:absolute;font-size:50px;color:yellow;" id="time"></div>
+<!--
+<div id="mouse-handle-div" style="position:absolute;width:100%;height:100%"></div>
+-->
+
+<div style="position:absolute;right:370px;bottom:20px;visibility:hidden;">
+    <span class="range-slider">
+        <input id="volume-ltr" type="range" min="0" max="10" step="1" value="0">
+        <span class="slider" aria-hidden="true">
+            <span class="thumb" style="inset-inline-start: 90%;"></span>
+        </span>
+    </span>
+</div>
+
+
+</div>
+  
+  <script src="./src/main-5.js" type="module">
+  </script>
+</body>
+</html>
+
+
+<script src="./src/three-proton-master/lib/three.min.js"></script>
+<script src="./src/three-proton-master/build/three.proton.min.js"></script>
+
+
+<script>
+
+
+const updateSlider = (range) => {
+	
+    const slider = range.nextElementSibling;
+    const thumb = slider.firstElementChild;
+
+    const distance = (range.value / range.max);
+    const offset = (thumb.offsetWidth / slider.offsetWidth) * distance;
+    const position = Math.floor((distance - offset) * 100);
+
+    thumb.style.insetInlineStart = position + '%';
+
+    if(typeof(thumb.style.insetInlineStart) == 'undefined') {
+        thumb.style.left = position + '%';
+    }
+}
+
+for(const type of ['input','change']) {
+    document.addEventListener(type, (e) => {
+        if(e.target.closest('.range-slider')) {
+            updateSlider(e.target);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const ranges = document.querySelectorAll('.range-slider > input[type="range"]');
+    for(const range of ranges) {
+        updateSlider(range);
+    }
+});
+
+function getNewProton(){
+		return new Proton();
+	}
+	
+	let zIndexCounter = 1000;
+function showModal(_width,_height,_title,_content) {
+  const modal = document.getElementById('cyberModal1');
+  const dragHeader = modal.querySelector('.modal-header');
+  const closeIcon = dragHeader.querySelector('.close-icon');
+  const minimizeIcon = dragHeader.querySelector('.minimize-icon');
+  const content=modal.querySelector('.modal-content');
+  let offsetX, offsetY;
+  let isDragging = false;
+  
+  modal.style.width=_width;
+  modal.style.height=_height;
+  modal.style.zIndex="9999999999999";
+  document.getElementById("modal-htext").innerHTML=_title;
+  content.innerHTML=_content;
+	
+  closeIcon.addEventListener("click",()=>{
+	modal.style.display = 'none';
+  });
+ 
+
+  let prevWidth = modal.style.width;
+  let prevHeight = modal.style.height;
+  minimizeIcon.addEventListener('click', toggleMinimize);
+
+  function toggleMinimize() {
+    if (modal.style.width === '240px' && modal.style.height === '45px') {
+      modal.style.width = prevWidth;
+      modal.style.height = prevHeight; 
+    } else {
+      prevWidth = modal.style.width;
+      prevHeight = modal.style.height;
+      modal.style.width = '240px';
+      modal.style.height = '45px';
+    }
+  }
+}
+
+let _controls_intro='';
+_controls_intro+='<h2>PC</h2>';
+_controls_intro+='<h3>+W => Rotate Up</h3>';
+_controls_intro+='<h3>+S => Rotate Down</h3>';
+_controls_intro+='<h3>+A => Rotate Left</h3>';
+_controls_intro+='<h3>+D => Rotate Right</h3>';
+_controls_intro+='<h3>+K => Roll Left</h3>';
+_controls_intro+='<h3>+L => Roll Right</h3>';
+_controls_intro+='<h3>+Space => Start/Stop Engine</h3>';
+_controls_intro+='<h3>+Enter => Fire</h3>';
+_controls_intro+='<h3></h3>';
+showModal("750px","400px","Controls",_controls_intro);
+
+document.getElementById('cyberModal1').remove();
+</script>

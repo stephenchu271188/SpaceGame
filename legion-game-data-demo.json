@@ -1,0 +1,13 @@
+[
+{"id":0,"userID":null,"position":[0.005,0,0.005],"starList":[{"radius":1.6862257952510356,"position":[0,0,0],"skinID":2,"planetList":[
+{"playerID":1,"type":1,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.01,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]},
+{"playerID":2,"type":1,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.01,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]},
+{"playerID":1,"type":1,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.01,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]},
+{"playerID":2,"type":1,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.01,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]},
+{"playerID":1,"type":1,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.01,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]},
+{"playerID":2,"type":1,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.01,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]}
+]}],"asteroidBelt":[],"cometList":[]},
+
+
+{"id":1,"userID":null,"position":[-0.02,0,-0.02],"starList":[{"radius":1.6862257952510356,"position":[0,0,0],"skinID":1,"planetList":[{"type":3,"radius":0.1,"skinID":5,"distance":0.1,"speed1":0.021,"speed2":0.02,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]},{"type":2,"radius":0.1,"skinID":1,"distance":0.1,"speed1":0.014,"speed2":0.012,"moonList":[{"radius":0.02,"skinID":1,"distance":0.03,"alpha":1.5,"speed1":0.01,"speed2":0.02}]}]}],"asteroidBelt":[],"cometList":[]}
+]

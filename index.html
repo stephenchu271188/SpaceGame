@@ -1,0 +1,178 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			body{
+				background-color:black;
+				overflow:hidden;
+				background-image: url('./resources/bg/bg3.jpg');
+
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				cursor:url("./resources/cursor/3.png"), auto;
+			}
+			.main_frame{
+				background-color:black;
+				position:absolute;
+				top:0px;
+				left:0px;
+				width:100%;
+				height:100%;
+				overflow:hidden;
+				
+			}
+			.btn {
+				position:absolute;
+				left:20px;
+				top:10px;
+				/*
+				background-color: rgba(62, 242, 251, 0.4);
+				border: none;
+				color: white;
+				padding: 12px 16px;
+				font-size: 16px;
+				cursor: pointer;
+				border:#3EFBF0 solid 1px;
+				*/
+				/*box-shadow: 0 0 20px 5px rgba(62, 177, 251, 1);*/
+				/* box-shadow: 0 0 0 4px rgba(255,255,255,0.1),0 0 0 8px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.1);*/
+			}
+
+			.btn:hover {
+			/*
+				background-color: rgba(62, 185, 251, 0.4);
+				*/
+			}
+			.loader {
+				width: 150px;
+				height: 150px;
+				line-height: 150px;
+				/*margin: 100px auto;*/
+				left:45%;
+				top:35%;
+				position: absolute;
+				box-sizing: border-box;
+				text-align: center;
+				z-index: 0;
+				text-transform: uppercase;
+				color:white;
+			}
+
+.loader:before,
+.loader:after {
+  opacity: 0;
+  box-sizing: border-box;
+  content: "\0020";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  border: 5px solid #fff;
+  box-shadow: 0 0 50px #fff, inset 0 0 50px #fff;
+  
+}
+
+.loader:after {
+  z-index: 1;
+  -webkit-animation: gogoloader 2s infinite 1s;
+}
+
+.loader:before {
+  z-index: 2;
+  -webkit-animation: gogoloader 2s infinite;
+}
+
+@-webkit-keyframes gogoloader {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+		</style>
+	</head>
+	<body>
+		<iframe id="myframe" onload="checkSrcChange()" class="main_frame" src="./home-page/index.html"></iframe>
+		<button id="home-btn" class="btn"><!--<i class="fa fa-home">--></i></button>
+		
+	</body>
+</html>
+<script>
+	let _home_btn=document.getElementById("home-btn");
+	let _myframe=document.getElementById("myframe");
+	//let _loader=document.getElementById("loader");
+	
+	_home_btn.addEventListener("click",()=>{
+		_myframe.src="./home-page/index.html";
+	});
+	
+	let _loading_screen=null;
+	function show_loading_screen(){
+		remove_loading_screen();
+		
+		_loading_screen=document.createElement("div");
+		_loading_screen.style.position="absolute";
+		_loading_screen.style.top="0px";
+		_loading_screen.style.left="0px";
+		_loading_screen.style.width="100%";
+		_loading_screen.style.height="100%";
+		_loading_screen.style.backgroundColor="black";
+		_loading_screen.style.backgroundImage="url('./resources/bg/bg3.jpg')";
+		_loading_screen.style.backgroundPosition="center";
+		_loading_screen.style.backgroundRepeat="no-repeat";
+		_loading_screen.style.backgroundSize="cover";
+		
+		document.body.appendChild(_loading_screen);
+		
+		let _loader=document.createElement("div");
+		_loader.innerHTML="Loading";
+		_loader.classList.add("loader");
+		_loading_screen.appendChild(_loader);
+		//<div id="loader" class="loader">Loading</div>
+		//_loader.style.visibility="visible";
+	}
+	
+	function remove_loading_screen(){
+		if(_loading_screen!=null){
+			_loading_screen.remove();
+			_loading_screen=null;
+		}
+		//_loader.style.visibility="hidden";
+	}
+	
+	function checkSrcChange(){
+		let iframeWindow = _myframe.contentWindow;
+		let iframeDocument = iframeWindow.document;
+		iframeDocument.body.onbeforeunload = function() {
+					show_loading_screen();
+		};
+		setTimeout(function(){
+				remove_loading_screen();
+				
+			},2000);
+	
+		const _src=_myframe.contentWindow.location.href.trim();
+		let _page=_src.split("/");
+		_page=_page[_page.length-1].trim();
+		
+		if(_page==='planet-defend.html'||_page==='index-1.html'||_page==='index-2.html'||_page==='index-3.html'||_page==='index-4.html'||_page==='index-5.html'
+		||_page==='legion-game.html'||_page==='mouse-controlled-game.html'
+		||_page==='show-room-1.html'||_page==='show-room-2.html'
+		)
+			_home_btn.style.visibility="hidden";
+		else
+			_home_btn.style.visibility="visible";
+			
+	}
+	
+</script>
