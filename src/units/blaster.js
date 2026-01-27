@@ -1,0 +1,277 @@
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.112.1/build/three.module.js';
+
+/*
+định nghĩa một hệ thống súng phun sử dụng Three.js với vertex và fragment shader 
+có thể tùy chỉnh để tạo hiệu ứng hạt. Hệ thống súng phun này có thể thêm và 
+cập nhật các hạt, thực hiện các hoạt hình và xử lý va chạm với các đối tượng 
+khác trong cảnh.
+*/
+
+export const blaster = (function() {
+
+  const _VS = `#version 300 es
+out vec2 v_UV;
+out vec3 vColor;
+
+void main() {
+  vColor = color;
+  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+  gl_Position = projectionMatrix * mvPosition;
+  v_UV = uv;
+}
+`;
+
+  const _PS = `#version 300 es
+uniform sampler2D diffuse;
+
+in vec2 v_UV;
+in vec3 vColor;
+out vec4 out_FragColor;
+
+void main() {
+  out_FragColor = vec4(vColor, 1.0) * texture(diffuse, v_UV);
+}
+`;
+
+  return {
+      BlasterSystem: class {
+        constructor(params) {
+			this._params=params;
+			this._game=params.game;
+            this._Initialize(params);
+			
+			this._width_rate=1;
+			
+			this._affect_player=params.affect_player;//co' lam player mat' HP ko
+			if(typeof this._affect_player ==='undefined'){
+				this._affect_player=true;
+			}
+			
+			//alert(this._affect_player);
+			if(params.radius){//pham vi cua laser
+				this._radius=params.radius;//cang lon' cang de ban' trung' muc tieu
+			}
+			else{
+				this._radius=0.5;
+			}
+			
+			if(params.damage){
+				this._damage=params.damage;
+			}
+			else{
+				this._damage=50;
+			}
+			
+			if(params.size){
+				this._size=params.size;
+			}
+			else{
+				this._size=1;
+			}
+		  
+        }
+
+        _Initialize(params) {
+          const uniforms = {
+            diffuse: {
+				//HINH DANG/MAU SAC CUA LASER
+              value: new THREE.TextureLoader().load(params.texture)
+            }
+          };
+          this._material = new THREE.ShaderMaterial( {
+            uniforms: uniforms,
+            vertexShader: _VS,
+            fragmentShader: _PS,
+
+            blending: THREE.AdditiveBlending,
+            depthTest: true,
+            depthWrite: false,
+            transparent: true,
+            vertexColors: true,
+            side: THREE.DoubleSide,
+          });
+
+          this._geometry = new THREE.BufferGeometry();
+
+          this._particleSystem = new THREE.Mesh(this._geometry, this._material);
+          this._particleSystem.frustumCulled = false;
+
+          this._game = params.game;
+          this._params = params;
+
+          this._liveParticles = [];
+
+          this._game._graphics._scene.add(this._particleSystem);
+        }
+
+        CreateParticle() {
+          const p = {
+            Start: new THREE.Vector3(0, 0, 0),
+            End: new THREE.Vector3(0, 0, 0),
+            Colour: new THREE.Color(),
+            Size: this._size,
+            Alive: true,
+          };
+          this._liveParticles.push(p);
+          return p;
+        }
+
+        Update(timeInSeconds) {
+          const _R = new THREE.Ray();
+          const _M = new THREE.Vector3();
+          const _S = new THREE.Sphere();
+          const _C = new THREE.Vector3();
+
+          for (const p of this._liveParticles) {
+            p.Life -= timeInSeconds;
+            if (p.Life <= 0) {
+              p.Alive = false;
+              continue;
+            }
+
+            p.End.add(p.Velocity.clone().multiplyScalar(timeInSeconds));
+
+            const segment = p.End.clone().sub(p.Start);
+            if (segment.length() > p.Length) {
+              const dir = p.Velocity.clone().normalize();
+              p.Start = p.End.clone().sub(dir.multiplyScalar(p.Length));
+            }
+			
+			
+			//continue;
+            // Find intersections KIEM TRA EM CO BAN' TRUNG' AI KO
+            _R.direction.copy(p.Velocity);
+            _R.direction.normalize();
+            _R.origin.copy(p.Start);
+
+            const blasterLength = p.End.distanceTo(p.Start);
+            _M.addVectors(p.Start, p.End);
+            _M.multiplyScalar(0.5);
+
+            const potentialList = this._params.visibility.GetLocalEntities(_M, blasterLength * this._radius);//<=QUAN TRONG
+
+            // Technically we should sort by distance, but I'll just use the first hit. Good enough.
+            if (potentialList.length == 0) {
+              continue;
+            }
+
+            for (let candidate of potentialList) {
+              _S.center.copy(candidate.Position);
+              //_S.radius = this._radius;//<=QUAN TRONG
+			  if(candidate._bound_radius)
+				  _S.radius=candidate._bound_radius;
+			  else
+				  _S.radius=2.0;
+				
+              if (!_R.intersectSphere(_S, _C)) {
+                continue;
+              }
+				
+              if (_C.distanceTo(p.Start) > blasterLength) {
+                continue;
+              }
+			  
+			  if(!this._affect_player&&candidate===this._game._entities['player']){
+				  //alert("FOUND");
+				 //de cho cac weapon gan' tren spacehip cua player ko the affect toi player
+			  }
+			  else{
+					if(candidate===this._params.parent_entity){//ban vao chinh' minh`
+						
+					}
+					else{
+						//console.log(candidate._player_id+ " AND "+this._params.parent_entity._player_id);
+						if(!this._params.parent_entity||candidate._player_id!=this._params.parent_entity._player_id){
+							p.Alive = false;
+							//candidate.TakeDamage(this._damage);
+							let _parent_class_name=null;
+							if(this._params.parent_entity)_parent_class_name= this._params.parent_entity.constructor.name;
+							candidate.Take_Damage(this._params.parent_entity,
+											      "blaster",
+												 _parent_class_name,this._damage);
+						}
+					}
+				
+			  }
+			  break;
+            }
+          }
+
+          this._liveParticles = this._liveParticles.filter(p => {
+            return p.Alive;
+          });
+
+          this._GenerateBuffers();
+        }
+
+        _GenerateBuffers() {
+          const indices = [];
+          const positions = [];
+          const colors = [];
+          const uvs = [];
+
+          const square = [0, 1, 2, 2, 3, 0];
+          let indexBase = 0;
+
+          for (const p of this._liveParticles) {
+            indices.push(...square.map(i => i + indexBase));
+            indexBase += 4;
+
+            const v1 = p.End.clone().applyMatrix4(
+                this._particleSystem.modelViewMatrix);
+            const v2 = p.Start.clone().applyMatrix4(
+                this._particleSystem.modelViewMatrix);
+            const dir = new THREE.Vector3().subVectors(v1, v2);
+            dir.z = 0;
+            dir.normalize();
+
+            const up = new THREE.Vector3(-dir.y, dir.x, 0);
+
+            const dirWS = up.clone().transformDirection(
+                this._params.camera.matrixWorld);
+            dirWS.multiplyScalar(p.Width*this._width_rate);
+
+            const p1 = new THREE.Vector3().copy(p.Start);
+            p1.add(dirWS);
+
+            const p2 = new THREE.Vector3().copy(p.Start);
+            p2.sub(dirWS);
+
+            const p3 = new THREE.Vector3().copy(p.End);
+            p3.sub(dirWS);
+
+            const p4 = new THREE.Vector3().copy(p.End);
+            p4.add(dirWS);
+
+            positions.push(p1.x, p1.y, p1.z);
+            positions.push(p2.x, p2.y, p2.z);
+            positions.push(p3.x, p3.y, p3.z);
+            positions.push(p4.x, p4.y, p4.z);
+
+            uvs.push(0.0, 0.0);
+            uvs.push(1.0, 0.0);
+            uvs.push(1.0, 1.0);
+            uvs.push(0.0, 1.0);
+
+            const c = p.Colours[0].lerp(
+                p.Colours[1], 1.0 - p.Life / p.TotalLife);
+            for (let i = 0; i < 4; i++) {
+              colors.push(c.r, c.g, c.b);
+            }
+          }
+
+          this._geometry.setAttribute(
+              'position', new THREE.Float32BufferAttribute(positions, 3));
+          this._geometry.setAttribute(
+              'uv', new THREE.Float32BufferAttribute(uvs, 2));
+          this._geometry.setAttribute(
+              'color', new THREE.Float32BufferAttribute(colors, 3));
+          this._geometry.setIndex(
+              new THREE.BufferAttribute(new Uint32Array(indices), 1));
+
+          this._geometry.attributes.position.needsUpdate = true;
+          this._geometry.attributes.uv.needsUpdate = true;
+        }
+      }
+  };
+})();
