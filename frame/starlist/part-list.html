@@ -1,0 +1,268 @@
+
+<html>
+  <head>
+    <title> </title>
+    <link rel="sylesheet" type="text/css" href="part-list-css.css">
+	<style>
+	@import url('htpps://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+display: flex;
+justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000000;
+  overflow:hidden;
+}
+.container{
+position:absolute;
+bottom:5px;
+display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.container a{
+position: relative;
+  width: 100px;
+  height: 40px;
+  display: inline-block;
+  background: #fff;
+  margin: 10px;
+}
+.container a:before,
+.container a:after
+{
+content:'';
+  position: absolute;
+  inset: 0;
+  transition: 0.5s;
+  background: #f00
+}
+.container a:before,
+.container a:after {
+  background: var(--before-background);
+}
+
+
+
+
+
+
+
+.container a:hover:before
+{
+  inset: -3px;  
+}
+.container a:hover:after
+{
+  inset: -3px;  
+  filter: blur(10px);
+}
+.container a span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background: #0e1538;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  border: 1px solid #040a29;
+  overflow: hidden;
+}
+.container a span::before{
+content:'';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.075);
+    transform: skew(25deg)
+}
+
+
+
+
+
+.btn2 {
+  position: relative;
+  display: inline-block;
+  padding: 25px 30px;
+  margin: 40px;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: 0.5s;
+}
+
+.btns{
+  position:absolute;
+  width:200px;
+  height:100px;
+  top:1%;
+  right:1%;
+  z-index:99999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  flex-direction: row;  
+}
+.blue-btn{
+  color: #03e9f4;
+  border: 1.5px solid #03e9f4;
+  border-radius: 7px;  
+}
+.blue-btn:hover{
+  background-color: #03e9f4;
+  color: #050801;
+  box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.pink-btn{
+  color: #e100ff;
+  border: 1.5px solid #e100ff;
+  border-radius: 7px;  
+}
+.pink-btn:hover{
+  background-color: #e100ff;
+  color: #050801;
+  box-shadow: 0px 0px 5px #e100ff, 0px 0px 25px #e100ff, 0px 0px 50px #e100ff, 0px 0px 100px #e100ff;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+
+	</style>
+  </head>
+<body>
+
+<div id="root" style="width:100%;height:100%;position:absolute;top:0px;left:0px;border:solid yellow 2px;">
+
+  <div id="container" class="container">
+  </div>
+  
+  <div class="btns">
+<a id="go-btn" class="btn2 blue-btn" href="#">Next</a>
+
+</div>
+  
+</div>
+  </body>
+</html>
+
+<script>
+const _standardW=1280;
+const _standardH=596;
+var _root=document.getElementById("root");
+_root.style.width=_standardW+"px";
+_root.style.height=_standardH+"px";
+var _iframe=null;
+let _galaxyID=0;
+let _maxID=5;//glaxyID>maxID se ko play duoc
+	var _colors=[
+		["#0B20D4","#a7f"],
+		["#EA0ED9","#0ED9EA"],
+		["#EA2F0E","#EA0ED9"],
+		["#1FEA0E","#0ECFEA"],
+		["#0E18EA","#EA7C0E"],
+		["#EA7C0E","#9D0EEA"],
+		["#9D0EEA","#EA220E"],
+		["#0EEA12","#E60EEA"],
+		["#E60EEA","#2CEA0E"],
+		["#2CEA0E","#EABF0E"],
+	];
+	
+	const _goBtn=document.getElementById("go-btn");
+	_goBtn.addEventListener("click",()=>{
+		//alert(_galaxyID);
+		if(_galaxyID>_maxID){
+			alert("invalid");
+		}
+	});
+	
+	const container=document.getElementById("container");
+	container.innerHTML="";
+	for(let i=0;i<10;i++){
+		let _part=document.createElement("a");	
+		_part.href="#";
+		
+		let _content=document.createElement("span");
+		_content.innerHTML="Galaxy "+(i+1);
+		
+		if(i<_maxID+1){
+			_part.style.setProperty('--before-background', 'linear-gradient(45deg, #00ccff, #0e1538, #d400d4)');
+			_part.style.setProperty('--after-background', 'linear-gradient(45deg, #00ccff, #0e1538, #d400d4)');
+		}
+		else{
+			_content.style.border="solid red 2px";
+		}
+		
+		_part.appendChild(_content);
+		container.appendChild(_part);
+		let _id=i;
+		_part.addEventListener("click",()=>{
+			_galaxyID=_id;
+			show_galaxy(_id);
+		});
+		
+		show_galaxy(0);
+	}
+	
+	
+	
+	function show_galaxy(_id){
+		if(_iframe!=null){
+			_iframe.remove();
+		}
+		const innColor=_colors[_id][0];
+		const outColor=_colors[_id][1];
+		localStorage.setItem("innColor",innColor);
+		localStorage.setItem("outColor",outColor);
+		
+		_iframe=document.createElement("iframe");
+		_iframe.style.position="absolute";
+		_iframe.style.width="100%";
+		_iframe.style.height="90%";
+		_iframe.style.top="0px";
+		_iframe.style.left="0px";
+		_iframe.style.border="none";
+		_iframe.style.backgroundColor="black";
+		_iframe.src="../galaxy-1/index.html";
+		
+		
+		_root.appendChild(_iframe);
+	}
+	
+	function onResize(){
+		const _w=window.innerWidth;
+		const _h=window.innerHeight;
+		const _rateW=_w/_standardW;
+		const _rateH=_h/_standardH;
+		//const _rateW=2;
+		//const _rateH=2;
+		
+		_root.style.transformOrigin = '0 0';
+		_root.style.transform = 'scale('+_rateW+','+_rateH+')';
+		//_root.style.transform = 'scale(1,1)';
+		//_root.style.top="0px";
+		//_root.style.left="0px";
+	}
+	
+	window.onresize=onResize;
+	onResize();
+	
+</script>

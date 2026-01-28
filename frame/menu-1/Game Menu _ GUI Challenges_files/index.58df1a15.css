@@ -1,0 +1,122 @@
+@import url(https://fonts.googleapis.com/css2?family=Audiowide&display=swap);
+body{
+	perspective:40vw;
+	overflow:hidden;
+	}
+
+.threeD-button-set{
+	--distance:1px;
+	--theme:hsl(180 100% 50%);
+--theme-bg:rgba(16, 174, 221,1);
+--theme-bg-hover:rgba(16, 174, 221,1);
+--theme-text:white;
+--theme-shadow:hsl(180 100% 10% / 25%);
+--_max-rotateY:10deg;
+--_max-rotateX:15deg;--_btn-bg:var(--theme-bg);
+--_btn-bg-hover:var(--theme-bg-hover);
+--_btn-text:var(--theme-text);
+--_btn-text-shadow:var(--theme-shadow);
+--_bounce-ease:cubic-bezier(.5, 1.75, .75, 1.25);
+margin:0;
+display:flex;
+flex-direction:column;
+align-items:flex-start;gap:2.5vh;transform-style:preserve-3d;
+
+}
+
+.threeD-button-set:focus{outline:0}
+
+@media (prefers-reduced-motion:no-preference){.threeD-button-set{will-change:transform;transition:transform .1s ease;
+-webkit-animation:rotate-y 5s ease-in-out infinite;animation:rotate-y 5s ease-in-out infinite}}
+@media (prefers-color-scheme:dark){
+	.threeD-button-set{--theme:hsl(255 53% 50%);
+	--theme-bg:hsl(255 53% 71% / 25%);
+	--theme-bg-hover:hsl(255 53% 50% / 40%);
+	--theme-shadow:hsl(255 53% 10% / 25%)
+	}}
+	
+	
+@media (dynamic-range:high){
+	@supports (color:color(display-p3 0 0 0)){
+	.threeD-button-set{--theme:color(display-p3 .4 0 .9)}}
+}
+
+
+.threeD-button-set>li{
+	display:inline-flex;position:relative;transform-style:preserve-3d
+}
+.threeD-button-set button{
+				-webkit-appearance:none;
+				-moz-appearance:none;
+				appearance:none;
+				outline:0;
+				border:none;
+				-webkit-tap-highlight-color:transparent;
+				background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+				color:var(--_btn-text);
+				text-shadow: 0 0 10px #000,
+        0 0 10px #000,
+        0 0 10px #000,
+        0 0 10px #000,
+        0 0 10px #000;
+				font-size:20px;
+				font-family:Audiowide;
+				padding-block:.75ch;
+				padding-inline:2ch;
+				
+				transform:translateZ(var(--distance));
+				transform-style:preserve-3d;
+				
+				border: 2px solid transparent;
+				box-shadow: 0 0 10px 5px #33BBFF;
+}
+
+.threeD-button-set button:is(:hover,:focus-visible):not(:active){
+	--distance:15px;background-color:var(--_btn-bg-hover)
+}
+
+
+@media (prefers-reduced-motion:no-preference){
+	.threeD-button-set button:is(:hover,:focus-visible):not(:active)
+	{
+		--distance:3vmax;transition-timing-function:var(--_bounce-ease);
+		transition-duration:.4s
+	}
+	.threeD-button-set button:is(:hover,:focus-visible):not(:active)::after{transition-duration:.5s}
+	.threeD-button-set button:is(:hover,:focus-visible):not(:active)::before{transition-duration:.3s}
+}
+.threeD-button-set button::after,.threeD-button-set button::before{
+		content:'';
+		opacity:.8;
+		position:absolute;inset:0;
+		border:1px solid var(--theme);
+		transform:translateZ(calc(var(--distance)/ 3))
+}
+						@media (prefers-reduced-motion:no-preference){
+							.threeD-button-set button::after,.threeD-button-set button::before{transition:transform .1s ease-out}}
+							.threeD-button-set button::before{border-width:3px;transform:translateZ(calc(var(--distance)/ 3 * -1))}
+							@media (prefers-color-scheme:dark){
+								.threeD-button-set button::before{box-shadow:0 0 25px var(--theme),inset 0 0 25px var(--theme)}}
+								@media (prefers-reduced-motion:no-preference){
+									.threeD-button-set button{will-change:transform;
+									transition:transform .2s ease,background-color .5s ease}}
+									
+html{
+	block-size:100%;
+	}
+	@media (prefers-color-scheme:dark)
+{html{
+	}}
+	body{
+		background-color: rgba(0, 0, 0, 0.6);
+		min-block-size:100%;
+		font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+		display:grid;
+		align-content:center;
+		justify-content:center;
+		place-content:center
+		}
+	.github-corner{fill:indigo;color:#fff}
+	.github-corner:hover .octo-arm
+	{-webkit-animation:octocat-wave 560ms ease-in-out;animation:octocat-wave 560ms ease-in-out}
+	

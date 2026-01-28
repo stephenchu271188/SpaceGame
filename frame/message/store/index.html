@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - To-do List App (finishing soon...)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="menu" class="open">
+      <header>
+        <span id="menu-btn"><i class="bi bi-list"></i></span>
+        <!--         <span id="menu-btn"></span> -->
+      </header>
+      <nav>
+        <ul class="nav-list">
+          <p class="nav-list-name">Tasks</p>
+          <li>
+            <a href="#today" class="nav-link">
+              <span class="icon-text">
+                <span class="nav-icon"><i class="bi bi-chevron-double-right"></i></span>
+                <span class="nav-text">Today</span>
+              </span>
+              <span class="task-count">2</span>
+            </a>
+          </li>
+          <li>
+            <a href="#upcoming" class="nav-link">
+              <span class="icon-text">
+                <span class="nav-icon"><i class="bi bi-list-check"></i></span>
+                <span class="nav-text">Upcoming</span>
+              </span>
+              <span class="task-count">1</span>
+            </a>
+          </li>
+          <li>
+            <a href="#missed" class="nav-link">
+              <span class="icon-text">
+                <span class="nav-icon missed"><i class="bi bi-exclamation-circle-fill"></i></span>
+                <span class="nav-text">Missed</span>
+              </span>
+              <span class="task-count">1</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link btn add" id="add-task-btn">
+              <span class="icon-text">
+                <span class="nav-icon"><i class="bi bi-plus-lg"></i></span>
+                <span class="nav-text">Add new task</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav-list">
+          <p class="nav-list-name">Lists</p>
+          <li>
+            <a href="#" class="nav-link">
+              <span class="icon-text">
+                <span class="nav-icon square blue"></span>
+                <span class="nav-text">Personal</span>
+              </span>
+              <span class="task-count">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">
+              <span class="icon-text">
+                <span class="nav-icon square orange"></span>
+                <span class="nav-text">Work</span>
+              </span>
+              <span class="task-count">1</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link add" id="add-list-btn">
+              <span class="icon-text">
+                <span class="nav-icon"><i class="bi bi-plus-lg"></i></span>
+                <span class="nav-text">Add new list</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <main id="main">
+      <div class="container">
+        <div id="today">
+          <h1>Today</h1>
+          <div class="tasks">
+            <div class="task blue">
+              <h3>Meeting</h3>
+              <p>Consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum. Tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris.</p>
+              <span class="task-time">
+                18:30
+              </span>
+              <button class="btn done">Task done</button>
+              <button class="btn delete">delete</button>
+            </div>
+            <div class="task blue">
+              <h3>Walk</h3>
+              <p>Consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum. Tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris.</p>
+              <span class="task-time">
+                21:45
+              </span>
+              <button class="btn done">Task done</button>
+              <button class="btn delete">delete</button>
+            </div>
+
+          </div>
+
+        </div>
+        <div id="upcoming">
+          <h1>Upcoming</h1>
+          <div class="tasks">
+            <div class="task blue">
+              <h3>Workout</h3>
+              <p>Consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum. Tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris.</p>
+              <span class="task-time">08-28-2023</span>
+              <button class="btn delete">Delete</button>
+            </div>
+          </div>
+
+        </div>
+        <div id="missed">
+          <h1>Missed</h1>
+          <div class="tasks">
+            <div class="task orange">
+              <h3>Coding</h3>
+              <p>Consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum. Tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris.</p>
+              <span class="task-time">08-16-2023</span>
+              <button class="btn done">Task done</button>
+              <button class="btn delete">Delete</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    <div class="form-wrapper">
+      <div id="add-task" class="form-container">
+        <i class="bi bi-x-lg close-btn" id="close-btn"></i>
+        <h1>Add task</h1>
+        <p>Mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor.</p>
+        <form id="newTask" action="" method="get">
+          <fieldset>
+            <label for="name">Enter task name:
+              <input type="text" name="name" id="name" required />
+            </label>
+            <label for="desc">Enter task description:
+              <textarea type="text" name="desc" id="desc" maxlength="100" rows="4" required></textarea>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <label for="date">Task date:
+              <input type="date" name="date" id="date" class="" />
+            </label>
+            <!--             <label for="date">Time:
+              <input type="text" name="time" id="time" class="time" />
+            </label> -->
+            <label for="type">List:
+              <input type="text" name="type" id="type" class="" />
+            </label>
+          </fieldset>
+          <input type="submit" name="submit" class="btn" id="createTask" />
+        </form>
+      </div>
+      <div id="add-list" class="form-container">
+        <i class="bi bi-x-lg close-btn"></i>
+        <h1>Add list</h1>
+        <p>Mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor.</p>
+        <form>
+          <fieldset>
+            <label for="name">Enter list name:
+              <input type="text" name="name" id="name" class="" placeholder="" required />
+            </label>
+            <label for="desc">Enter list description:
+              <textarea type="text" name="desc" id="desc" class="" placeholder="" maxlength="30" rows="3" required></textarea>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <label>Choose a color:</label>
+            <div class="color-picker">
+              <span class="task-color orange"></span>
+              <span class="task-color green"></span>
+              <span class="task-color cyan"></span>
+              <span class="task-color red"></span>
+              <span class="task-color purple"></span>
+              <span class="task-color blue"></span>
+            </div>
+          </fieldset>
+          <input type="submit" name="submit" class="btn" />
+        </form>
+      </div>
+    </div>
+</body>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

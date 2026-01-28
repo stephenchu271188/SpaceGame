@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+#vegeta {
+    width: 300px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0a0a0b;
+   /* background-image: url("img/bg3.jpg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	overflow:hidden;
+	cursor:url("../resources/cursor/3.png"), auto;
+}
+.root{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+section{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    /* https://lh3.googleusercontent.com/ka_5IYJDRkXZnbptxq64LPuggGL5FM8gnpJlsuSiOQh4b39kMkiRbVfX8iK8bjMg5SLkdfoix09P60wyFjN2=w681-h614 */
+    background: url("https://i.postimg.cc/c1Q3njM0/bg2.jpg");
+/*   background-color:black; */
+    background-size: cover;
+    animation: animateBg 50s linear infinite;
+}
+
+@keyframes animateBg{
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+}
+
+span{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.1),0 0 0 8px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.1);
+    animation: animate 3s linear infinite;
+}
+span::before{
+    content:'';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg,#fff,transparent);
+}
+@keyframes animate
+{
+    0%
+    {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+    }
+    70%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+span:nth-child(1){
+    top: 0;
+    right: 0;
+    left: initial;
+    animation-delay: 0s;
+    animation-duration: 1s;
+}
+span:nth-child(2){
+    top: 0;
+    right: 80px;
+    left: initial;
+    animation-delay: 0.2s;
+    animation-duration: 3s;
+}
+span:nth-child(3){
+    top: 80;
+    right: 0px;
+    left: initial;
+    animation-delay: 0.4s;
+    animation-duration: 2s;
+}
+span:nth-child(4){
+    top: 0;
+    right: 180px;
+    left: initial;
+    animation-delay: 0.6s;
+    animation-duration: 1.5s;
+}
+span:nth-child(5){
+    top: 0;
+    right: 400px;
+    left: initial;
+    animation-delay: 0.8s;
+    animation-duration: 2.5s;
+}
+span:nth-child(6){
+    top: 0;
+    right: 600px;
+    left: initial;
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+span:nth-child(7){
+    top: 300px;
+    right: 0px;
+    left: initial;
+    animation-delay: 1.2s;
+    animation-duration: 1.75s;
+}
+span:nth-child(8){
+    top: 0px;
+    right: 700px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 1.25s;
+}
+span:nth-child(9){
+    top: 0px;
+    right: 1000px;
+    left: initial;
+    animation-delay: 0.75s;
+    animation-duration: 2.25s;
+}
+span:nth-child(9){
+    top: 0px;
+    right: 450px;
+    left: initial;
+    animation-delay: 2.75s;
+    animation-duration: 2.75s;
+}
+
+.container {
+    position: relative;
+    width:450px;
+    top:20%;
+    display: flex; /* Sử dụng flexbox để căn giữa các phần tử và xếp chúng trên hàng ngang */
+    justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+    align-items: center;
+}
+
+.title{
+    position:absolute;
+    width:100%;
+    text-align: center;
+    top:50px;
+    font-size:50px;
+    font-family: 'Consolas', cursive;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:white;
+    animation-name:glow;
+    animation-duration:1s;
+    animation-iteration-count:infinite;
+    animation-direction:alternate;
+}
+@keyframes glow{
+    from{text-shadow:0px 0px 5px #fff,0px 0px 5px #614ad3;}
+    to{text-shadow:0px 0px 20px #fff,0px 0px 20px #614ad3;}
+  }
+.container .card {
+    position: relative;
+    width: 320px;
+    height: 450px;
+    background: #232323;
+    border-radius: 15px;
+    border:#3EB1FB solid 1px;
+    box-shadow: 0 0 20px 5px rgba(62, 177, 251, 1); 
+    transition: box-shadow 0.3s ease-in-out; 
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-right: 50px;
+}
+
+.container .card .planet {
+    position: absolute;
+    top: -13%; 
+    width: 300px; 
+    height: 300px; 
+    background-size: cover;
+    clip-path: circle(50% at 50% 50%);
+    transition: transform 0.5s; 
+}
+.planet1{
+    right: -13%; 
+    background-image: url('img/planet-1.png'); 
+}
+.planet2{
+    left: -13%; 
+    background-image: url('img/planet-2.png'); 
+}
+.container .card .planet.zoom-in {
+    transform: scale(2.5); 
+}
+
+.container .card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: #ffa800;*/
+    clip-path: circle(150px at 80% 20%);
+    transition: 0.5s ease-in-out;
+    
+}
+
+.container .card:hover:before {
+    clip-path: circle(300px at 80% -20%);
+}
+
+.container .card:after {
+    content: 'Universe';
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    font-size: 4em;
+    font-weight: 1000;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.06);
+
+}
+
+.container .card .imgBx {
+    position: absolute;
+    top: 5%;
+    transform: translateY(-50%) z-index: 10000;
+    width: 100%;
+    height: 220px;
+    transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+    top: 0%;
+    height: 200%;
+    transform: translateY(0%);
+    transition: 0.5;
+}
+
+.container .card .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    transition-timing-function: 1s;
+    z-index: 10;
+}
+
+.container .card:hover .contentBx {
+    height: 210px;
+    transition: 0.5s;
+
+}
+
+.container .card .contentBx h2 {
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1;
+    color: #fff;
+    transition: 0.5s;
+    text-shadow: 1px 1px 5px #000;
+
+}
+
+.container .card .contentBx .size,
+.container .card .contentBx .color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+
+}
+
+.container .card:hover .contentBx .size{
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s;
+    
+}.container .card:hover .contentBx .color{
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.7s;
+    
+}
+
+.container .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
+    color: white;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 10px;
+    transition: 0.5s;
+    text-shadow: 1px 1px 5px #000;
+
+
+
+}
+
+.container .card .contentBx .size span {
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    color: #111;
+    background: #fff;
+    margin: 0 5px;
+    border-radius: 4px;
+    transition: 0.5s;
+    color: #111;
+    cursor: pointer;
+
+}
+
+.container .card .contentBx .size span:hover {
+    background: #ffa800;
+}
+
+.container .card .contentBx .color span {
+    width: 20px;
+    height: 20px;
+    background: #ff0;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.container .card .contentBx .color span:nth-child(2) {
+    background: #0033cc;
+}
+
+.container .card .contentBx .color span:nth-child(3) {
+    background: #ffa800;
+}
+
+.container .card .contentBx .color span:nth-child(4) {
+    background: #7d4021;
+}
+
+.container .card .contentBx a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #111;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.5s;
+}
+
+.container .card:hover .contentBx a{
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 0.9s;
+}

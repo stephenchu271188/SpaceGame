@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel='stylesheet' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./buttons.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div id="main-container" class="main-container">
+<div id="inventory-container-1">
+<div class="page-list-container">
+            <button onclick="select_category_handle('food')" class="button-33">food</button>
+			<button onclick="select_category_handle('liquid')" class="button-33">liquid</button>
+            <button onclick="select_category_handle('fuel')" class="button-33">fuel</button>
+            <button onclick="select_category_handle('solid')" class="button-33">solid</button>
+			
+</div>
+<div class="inventory-table" id="personal-inventory">
+    <div class="inventory-row">
+        <div class="inventory-cell">
+            <div class="inventory-item grape"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item sword1" data-item-type="weapon sword"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item carrot"></div>
+        </div>
+        <div class="inventory-cell">
+        </div>
+        <div class="inventory-cell">
+        </div>
+    </div>
+    <div class="inventory-row">
+        <div class="inventory-cell">
+            <div class="inventory-item carrot" data-item-type="food"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item meat1" data-item-type="food cookable"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item meat1" data-item-type="food cookable"></div>
+        </div>
+        <div class="inventory-cell"></div>
+        <div class="inventory-cell"></div>
+    </div>
+    <div class="inventory-row">
+        <div class="inventory-cell">
+            <div class="inventory-item axe1" data-item-type="weapon axe"></div>    
+        </div>
+        <div class="inventory-cell">
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item grape" data-item-type="food"></div>
+        </div>
+        <div class="inventory-cell"></div>
+        <div class="inventory-cell"></div>
+    </div>
+</div>
+</div>
+
+<div id="inventory-container-2" style="">
+
+<div class="inventory-table" id="space-station-store">
+    <div class="inventory-row">
+        <div class="inventory-cell">
+            <div class="inventory-item grape" data-item-type="food"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item sword1" data-item-type="weapon sword"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item carrot" data-item-type="food"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item fire-sword1" data-item-type="weapon sword enchanted"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item fire-bow1" data-item-type="weapon bow enchanted"></div>
+        </div>
+    </div>
+    <div class="inventory-row">
+        <div class="inventory-cell">
+            <div class="inventory-item carrot" data-item-type="food"></div>
+        </div>
+        <div class="inventory-cell">
+            <div class="inventory-item fire-axe1" data-item-type="weapon axe enchanted"></div>    
+        </div>
+        <div class="inventory-cell"></div>
+        <div class="inventory-cell"></div>
+        <div class="inventory-cell"></div>
+    </div>
+</div>
+</div>
+
+</div>
+
+
+<div class="bottom-button-container">
+            <button class="custom-btn btn-3" style="width:60px;">Save</button>
+            
+</div>
+
+
+<!-- partial -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

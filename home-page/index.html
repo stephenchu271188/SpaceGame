@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!--
+<section>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </section>
+	
+	<div id="root" class="root">
+	
+	 
+    <div class="title"></div>
+    <div id="discovery-mode" class="container">
+        <div class="card">
+            <div class="planet planet1"></div>
+            <div class="imgBx">
+                <img id="vegeta" src="img/ship-4.png">
+            </div>
+            <div class="contentBx">
+                <h2>Discovery</h2>
+                <div class="size">
+                    <h3>LEVEL :</h3>
+                    <span>7</span>
+                    <span>8</span>
+                    <span>9</span>
+                    <span>10</span>
+                </div>
+                <div class="color">
+                    <h3>TopMedals :</h3>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="#">Start Exploring</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="campaign-mode" class="container">
+        <div class="card">
+            <div class="planet planet2"></div>
+            <div class="imgBx">
+                <img id="vegeta" src="img/ship-2.png">
+            </div>
+            <div class="contentBx">
+                <h2>Campaign</h2>
+                <div class="size">
+                    <h3>LEVEL :</h3>
+                    <span>7</span>
+                    <span>8</span>
+                    <span>9</span>
+                    <span>10</span>
+                </div>
+                <div class="color">
+                    <h3>TopMedals :</h3>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="#">Start Campaign</a>
+            </div>
+        </div>
+    </div>
+	
+</div>
+-->
+</body>
+</html>
+<script src="../src/user.js"></script>
+<script>
+save_account('guest-0331','Abc123*');
+log_success('guest-0331','Abc123*');
+location.href="../homepage-discovery-mode.html";
+/*
+function isMobileDevice() {
+		return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+	}
+function init(){
+	
+	if(_saved_username===null||_saved_password===null){
+		location.href="../login-page/index.html";
+		return;
+	}
+	
+	const cards = document.querySelectorAll('.container .card');
+
+cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+       
+        card.querySelector('.planet').classList.add('zoom-in');
+    });
+
+    card.addEventListener('mouseleave', () => {
+        
+        card.querySelector('.planet').classList.remove('zoom-in');
+    });
+});
+
+const root=document.getElementById("root");
+if(isMobileDevice()){
+	//root.style.transform="scale(0.7)";
+}
+//root.style.transform="scale(0.5)";
+const discovery_mode=document.getElementById("discovery-mode");
+	const campaign_mode=document.getElementById("campaign-mode");
+	
+	discovery_mode.addEventListener("click",()=>{
+		localStorage.setItem('Game-Mode',"Discovery");
+		location.href="../homepage-discovery-mode.html";
+	});
+	campaign_mode.addEventListener("click",()=>{
+		localStorage.setItem('Game-Mode',"Campaign");
+		location.href="../legion-game-option.html";
+	});
+}
+init();
+
+function _resize(){
+		const _winW=window.innerWidth;
+		const _winH=window.innerHeight;
+		const _sclW=parseFloat(_winW/1536);
+		const _sclH=parseFloat(_winH/743);
+		document.getElementById("root").style.transform="scale("+_sclW+","+_sclH+")";
+		//document.getElementById("campaign-mode").style.transform="scale("+_sclW+","+_sclH+")";
+	}
+	
+	_resize();
+	 window.addEventListener('resize', () => {
+        _resize();
+      }, false);
+    */
+</script>

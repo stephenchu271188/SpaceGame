@@ -1,0 +1,186 @@
+<html>
+<head>
+<style>
+.meter {
+  box-sizing: content-box;
+  height: 20px; /* Can be anything */
+  position: relative;
+  margin: 60px 0 20px 0; /* Just for demo spacing */
+  //background: #555;
+  
+  padding: 10px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  transform:skewX(-20deg);
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  transform:skewX(-20deg);
+}
+.meter > span:after,
+.animate > span > span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(44, 112, 232, 0.4) 25%,/*COLOR1*/
+    transparent 25%,
+    transparent 50%,
+    rgba(44, 112, 232, 0.4) 50%,/*COLOR1*/
+    rgba(44, 112, 232, 0.4) 75%,/*COLOR1*/
+    transparent 75%,
+    transparent
+  );
+  z-index: 1;
+  background-size: 50px 50px;
+  animation: move 2s linear infinite;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+}
+
+.animate > span:after {
+  display: none;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.orange > span {
+  background-image: linear-gradient(#f1a165, #f36d0a);
+}
+
+.red > span {
+  background-image: linear-gradient(#2ce8d1, #2ce8d1);/* COLOR 2*/
+}
+
+.nostripes > span > span,
+.nostripes > span::after {
+  background-image: none;
+}
+
+#page-wrap {
+  width: 550px;
+  margin: 80px auto;
+  background: rgba(0,0,0,0.5);
+  border:1px solid #33BBFF;
+  box-shadow:0 0 5px 5px #33BBFF;
+}
+body {
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  text-align: center;
+  color: #eee;
+  font-family: system-ui, sans-serif;
+  
+}
+h1 {
+ 
+ background: linear-gradient(to bottom, turquoise,white, blue);
+									-webkit-background-clip: text;
+									-webkit-text-fill-color: transparent;
+ font-size: 34px;
+ font-weight: bold;
+  margin: 0 0 30px;
+  
+      font-family: 'Arial', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+.bar-container{
+	width:80%;
+	display: inline-block;
+    margin: 0 10px;
+}
+.neon-text-1{
+	 text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff,
+        0 0 80px #0ff;
+      font-family: 'Arial', sans-serif;
+}
+
+</style>
+</head>
+<body>
+  
+  <div id="page-wrap">
+  <div style="width:100%;background-color: rgba(0,0,0,0.5)"><h1>Current Rank</h1></div>
+	  <div>
+		<div class="neon-text-1" id="current-exp">
+		</div>
+      </div>
+	  <div>
+		<div class="neon-text-1" id="next-exp">
+		</div>
+      </div>
+	  <div class="bar-container">
+		<div class="meter red">
+			<span id="exp" style="width: 0%"></span>
+		</div>
+      </div>
+	  <div style="display:flex;align-items: center;justify-content: space-between;">
+		<div class="neon-text-1" style="margin-left:40px;margin-top:-80px;" id="text1"></div>
+		<div class="meter orange" style="visibility:hidden;">
+			<span style="width: 80%"></span>
+		</div>
+		<div class="neon-text-1" style="margin-right:40px;margin-top:-80px;" id="text2"></div>
+      </div>
+  </div>
+
+</body>
+
+</html>
+ <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+<script>
+
+
+function set_value(_text1,_text2,_percent,_exp1,_exp2){
+	document.getElementById("exp").style.width=_percent+"%";
+	document.getElementById("current-exp").innerHTML="EXP:"+_exp1;
+	document.getElementById("next-exp").innerHTML="Next Rank:"+_exp2;
+	document.getElementById("text1").innerHTML=_text1;
+	document.getElementById("text2").innerHTML=_text2;
+	$(".meter > span").each(function () {
+		$(this)
+			.data("origWidth", $(this).width())
+			.width(0)
+			.animate(
+			{
+				width: $(this).data("origWidth")
+			},
+			1200
+			);
+	});
+	
+}
+
+//set_value("level10","level11",90);
+
+</script>

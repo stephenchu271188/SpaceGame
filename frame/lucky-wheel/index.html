@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J2Team Community Offline</title>
+    <link rel="stylesheet" href="css/typo/typo.css" />
+    <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
+    <style>
+      .hc-luckywheel{
+        position:fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -250px;
+        margin-left: -250px;
+      }
+    </style>
+  </head>
+  <body class="bg">
+  <div class="root">
+    <div class="wrapper typo" id="wrapper">
+      <section id="luckywheel" class="hc-luckywheel">
+        <div class="hc-luckywheel-container">
+          <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
+            >Vòng Xoay May Mắn</canvas
+          >
+        </div>
+        <a class="hc-luckywheel-btn" href="javascript:;">Spin</a>
+      </section>
+    </div>
+	
+	
+	<div id="turn-num" style="position:absolute;top:10px;left:10px;"></div>
+	
+	
+    </div>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/hc-canvas-luckwheel.js"></script>
+    <script>
+      let isPercentage = true;
+	  let prizes;
+	  let _game;
+	  function set_game(_x){
+		_game=_x;
+		update_turn_num();
+	  }
+	  function update_turn_num(){
+		document.getElementById("turn-num").innerHTML=`<h2  style="
+									background: linear-gradient(to bottom, red,white, blue);
+									-webkit-background-clip: text;
+									-webkit-text-fill-color: transparent;
+									font-size: 30px;
+									font-weight: bold;
+				"'>Turn:`+get_turn_num()+`</h2>`;
+	  }
+	  let get_turn_num=()=>{
+		return _game._item_package.get_item_num(-1);
+	  };
+	  /*
+      let prizes = [
+              {
+                text: "1000$",
+                img: "./img/missle-1.png",
+                number: 1, // 1%,
+                percentpage: 0.3 // 30%
+              },
+              {
+                text: "2000$",
+                img: "img/missle-2.png",
+                number: 1,
+                percentpage: 0.09 // 9%
+              },
+              {
+                text: "3000$",
+                img: "img/missle-3.png",
+                number : 1,
+                percentpage: 0.05 // 5%
+              },
+              {
+                text: "4000$",
+                img: "img/missle-4.png",
+                number: 1,
+                percentpage: 0.05 // 5%
+              },
+			  {
+                text: "5000$",
+                img: "img/missle-5.png",
+                number: 1,
+                percentpage: 0.05 // 5%
+              },
+			  {
+                text: "6000$",
+                img: "img/missle-6.png",
+                number: 1,
+                percentpage: 0.05 // 5%
+              },
+			  {
+                text: "7000$",
+                img: "img/missle-7.png",
+                number: 1,
+                percentpage: 0.05 // 5%
+              },
+			  {
+                text: "8000$",
+                img: "img/missle-8.png",
+                number: 1,
+                percentpage: 0.05 // 5%
+              },
+			  {
+                text: "Gemstone",
+                img: "img/missle-9.png",
+                number: 1,
+                percentpage: 0.01 // 1%
+              },
+              {
+                text: "Lost Turn",
+                img: "img/miss.png",
+                percentpage: 0.3 // 30%
+              }
+            ];
+		*/
+		
+	let _win_fc;
+      function setData(_d,_fc1){
+		prizes=_d;
+		_win_fc=_fc1;
+		
+          hcLuckywheel.init({
+            id: "luckywheel",
+            config: function(callback) {
+              callback &&
+                callback(prizes);
+            },
+            mode : "both",
+            getPrize: function(callback) {
+              var rand = randomIndex(prizes);
+              var chances = rand;
+              callback && callback([rand, chances]);
+            },
+            gotBack: function(data) {
+              if(data == null){
+                Swal.fire(
+                  'The programme is finished!',
+                  'Rewards over!',
+                  'error'
+                )
+              } else if (data == 'Chúc bạn may mắn lần sau'){//Better luck next time!
+                Swal.fire(
+                  'No prize!',
+                  data,
+                  'error'
+                )
+              } else{
+			    _win_fc(data);
+                Swal.fire(
+                  'Great!',
+                  data,
+                  'success'
+                )
+				
+              }
+            }
+          });
+        }
+	  
+	
+      function randomIndex(prizes){
+        if(isPercentage){
+          var counter = 1;
+          for (let i = 0; i < prizes.length; i++) {
+            if(prizes[i].number == 0){
+              counter++
+            }
+          }
+          if(counter == prizes.length){
+            return null
+          }
+          let rand = Math.random();
+          let prizeIndex = null;
+          console.log(rand);
+          switch (true) {
+		    case rand < prizes[9].percentpage:
+              prizeIndex = 9 ;
+              break;
+		    case rand < prizes[9].percentpage + prizes[8].percentpage:
+              prizeIndex = 8 ;
+              break;
+		    case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage:
+              prizeIndex = 7 ;
+              break;
+		    case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage:
+              prizeIndex = 6 ;
+              break;
+		    case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage + prizes[5].percentpage:
+              prizeIndex = 5 ;
+              break;
+            case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage + prizes[5].percentpage + prizes[4].percentpage:
+              prizeIndex = 4 ;
+              break;
+            case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage + prizes[5].percentpage + prizes[4].percentpage + prizes[3].percentpage:
+              prizeIndex = 3;
+              break;
+            case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage + prizes[5].percentpage + prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage:
+              prizeIndex = 2;
+              break;
+            case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage + prizes[5].percentpage + prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage:
+              prizeIndex = 1;
+              break;  
+            case rand < prizes[9].percentpage + prizes[8].percentpage + prizes[7].percentpage + prizes[6].percentpage + prizes[5].percentpage + prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
+              prizeIndex = 0;
+              break;  
+          }
+          if(prizes[prizeIndex].number != 0){
+            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
+            return prizeIndex
+          }else{
+            return randomIndex(prizes)
+          }
+        }else{
+          var counter = 0;
+          for (let i = 0; i < prizes.length; i++) {
+            if(prizes[i].number == 0){
+              counter++
+            }
+          }
+          if(counter == prizes.length){
+            return null
+          }
+          var rand = (Math.random() * (prizes.length)) >>> 0;
+          if(prizes[rand].number != 0){
+            prizes[rand].number = prizes[rand].number - 1
+            return rand
+          }else{
+            return randomIndex(prizes)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

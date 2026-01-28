@@ -1,0 +1,366 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body
+{
+  
+    color: #dddddd;
+    font-family: Arial;
+	overflow:hidden;
+	background-color: rgba(4, 76, 230, 0.4);
+}
+
+
+a, a:link, a:visited { 
+  color: #c00;
+  text-decoration: none;
+  
+  -webkit-transition: all 0.3s ease;  
+  transition: all 0.3s ease;
+}
+a:hover { 
+  color: #ff5c19;
+  text-decoration: underline;
+}  
+a:active { 
+  color: #6aff19;
+}
+
+input[type="range"]
+{
+    width: 400px;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 30px;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  text-align: center;
+  
+  height:80%;
+  width:90%;
+}
+
+.page-list-container{
+  display: flex;
+  justify-content: flex-start; /* Căn bên trái theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  text-align: center;
+}
+
+.bottom-button-container {
+ display: flex;
+  justify-content: flex-end; /* Căn phải theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  text-align: center;
+  position: absolute;
+  bottom: 25px;
+  right: 10px; /* Cách lề bên phải 50px */
+  width: 100%;
+}
+
+.inventory-table
+{
+
+}
+
+.inventory-row
+{
+   display: flex;
+	flex-direction: row;
+	justify-content: flex-start; /* align items in Main Axis */
+	align-items: flex-start; /* align items in Cross Axis */
+	align-content: flex-start; /* Extra space in Cross Axis */
+}
+
+
+.inventory-cell
+{
+    width: 36px;
+    height: 36px;
+    
+    flex-shrink: 0;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* align items in Main Axis */
+    align-items: center; /* align items in Cross Axis */
+    align-content: center; /* Extra space in Cross Axis */
+    
+	background-color:#0DADB8;
+    border: 1px solid #ffffff;
+	border-radius: 5px; 
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* left */
+.inventory-cell:first-child
+{
+    width: 38px;
+    padding-left: 2px;
+    
+    background-position: -190px -331px;
+}
+
+/* right */
+.inventory-cell:last-child
+{
+    width: 38px;
+    padding-right: 2px;
+    
+    background-position: -266px -331px;
+}
+    
+
+/* top ROW */
+.inventory-row:first-child .inventory-cell
+{
+    height: 38px;
+    padding-top: 2px;
+    
+    background-position: -229px -292px;
+}
+
+/* bottom ROW */
+.inventory-row:last-child .inventory-cell
+{
+    height: 38px;
+    padding-bottom: 2px;
+    
+    background-position: -229px -368px;
+}
+
+/* top left */
+.inventory-row:first-child .inventory-cell:first-child
+{
+    width: 38px;
+    height: 38px;
+    
+    background-position: -190px -292px;
+}
+
+/* top right */
+.inventory-row:first-child .inventory-cell:last-child
+{
+    width: 38px;
+    height: 38px;
+    
+    background-position: -266px -292px;
+}
+
+/* bottom left */
+.inventory-row:last-child .inventory-cell:first-child
+{
+    width: 38px;
+    height: 38px;
+    
+    background-position: -190px -368px;
+}
+
+/* bottom right */
+.inventory-row:last-child .inventory-cell:last-child
+{
+    width: 38px;
+    height: 38px;
+    
+    background-position: -266px -368px;
+}
+
+
+/* single horizontal */
+.inventory-row:only-child .inventory-cell
+{
+    height: 40px;
+    
+    background-position: -613px -286px;
+}
+/* single horizontal left */
+.inventory-row:only-child .inventory-cell:first-child
+{
+    width: 38px;
+    height: 40px;
+    
+    background-position: -574px -286px;
+}
+/* single horizontal right */
+.inventory-row:only-child .inventory-cell:last-child
+{
+    width: 38px;
+    height: 40px;
+    
+    background-position: -650px -286px;
+}
+
+/* single vertical */
+.inventory-row .inventory-cell:only-child
+{
+    width: 40px;
+    
+    background-position: -563px -463px;
+}
+/* single vertical top */
+.inventory-row:first-child .inventory-cell:only-child
+{
+    width: 40px;
+    height: 38px;
+    
+    background-position: -563px -424px;
+}
+/* single vertical bottom */
+.inventory-row:last-child .inventory-cell:only-child
+{
+    width: 40px;
+    height: 38px;
+    
+    background-position: -563px -500px;
+}
+
+/* single by singel */
+.inventory-row:only-child .inventory-cell:only-child
+{
+    width: 40px;
+    height: 40px;
+    
+    background-position: -30px -288px;
+}
+
+
+
+/* ITEMS */
+
+.inventory-item
+{
+    width: 34px;
+    height: 34px;
+    background-image: url('img/new-items.png');
+    background-repeat: no-repeat;
+    
+    cursor: hand;
+    cursor: pointer;
+    
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+
+.inventory-item-sortable-placeholder
+{
+    display: none;
+}
+
+.inventory-item.ui-sortable-helper, .inventory-item.ui-draggable-dragging
+{
+    opacity: .6;
+}
+
+.inventory-item.grape
+{
+    background-position: 0px 0px;
+}
+.inventory-item.carrot
+{
+    background-position: -34px -34px;
+}
+.inventory-item.sword1
+{
+    background-position: 0px -170px;
+}
+.inventory-item.fire-sword1
+{
+    background-position: -34px -952px;
+}
+.inventory-item.axe1
+{
+    background-position: -170px -340px;
+}
+.inventory-item.fire-axe1
+{
+    background-position: -306px -340px;
+}
+.inventory-item.fire-bow1
+{
+    background-position: -238px -374px;
+}
+.inventory-item.meat1
+{
+    background-position: -374px -34px;
+}
+.inventory-item.meat1-cooked
+{
+    background-position: -442px -34px;
+}
+.inventory-item.bread1
+{
+    background-position: -238px -34px;
+}
+
+.inventory-item.gold
+{
+    background-position: -238px -510px;
+}
+.inventory-item.silver
+{
+    background-position: -272px -510px;
+}
+.inventory-item.copper
+{
+    background-position: -306px -510px;
+}
+.inventory-item.iron
+{
+    background-position: -68px -1020px;
+}
+.inventory-item.coal
+{
+    background-position: -442px -510px;
+}
+.inventory-item.diamond
+{
+    background-position: 0px -510px;
+}
+.inventory-item.gem
+{
+    background-position: -68px -510px;
+}
+.inventory-item.ruby
+{
+    background-position: -34px -510px;
+}
+.inventory-item.jade
+{
+    background-position: -170px -510px;
+}
+
+
+.inventory-item.water
+{
+    background-position: -442px -102px;
+}
+.inventory-item.h2s04
+{
+    background-position: -170px -68px;
+}
+.inventory-item.hcl
+{
+    background-position: -102px -68px;
+}
+.inventory-item.mercury
+{
+    background-position: 0px -68px;
+}
+
+
+
+.inventory-item.battery
+{
+    background-position: 0px -1020px;
+}
+.inventory-item.tnt
+{
+    background-position: -34px -1020px;
+}

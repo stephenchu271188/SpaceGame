@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="hsl(221 90% 98%)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="Canvas" media="(prefers-color-scheme: dark)">
+    <meta name="description" content="🙂">
+    
+    
+  <script type="module" crossorigin="" src="./Game Menu _ GUI Challenges_files/index.5aacb587.js"></script>
+  <link rel="stylesheet" href="./Game Menu _ GUI Challenges_files/index.58df1a15.css">
+  
+  <style>
+ body{
+	/*background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);*/
+	/*background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);*/
+	/*
+	background-color:black;
+				overflow:hidden;
+				background-image: url('../../resources/bg/bg3.jpg');
+
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				*/
+				cursor:url("../../resources/cursor/3.png"), auto;
+ }
+ 
+.box {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+   
+   border-radius: 40px;
+   background-color:rgba(0, 0, 0, 1.0);
+   //border:1px white solid;
+   //background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), gray);
+   box-shadow: 0 0 10px 5px #33BBFF;
+   margin-bottom: 40px;
+   
+}
+
+.range1 {
+   width: 400px;
+   height: 15px;
+   appearance: none;
+   background: #edf1f4;
+   outline: none;
+   
+   border-radius: 15px;
+   //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1), -5px -5px 10px #fff, inset 5px 5px 5px rgba(0, 0, 0, 0.1);
+   
+   overflow: hidden;
+}
+
+.range1::-webkit-slider-thumb {
+   appearance: none;
+   width: 15px;
+   height: 15px;
+   
+   background: #fff;
+   border-radius: 50%;
+   border: 2px solid #0074cf;
+   box-shadow: -407px 0 0 400px #27a0ff;
+   cursor: pointer;
+}
+
+#rangeValue {
+   position: relative;
+   text-align: center;
+   width: 60px;
+   font-size: 1.25em;
+   color: #fff;
+   background: #27a0ff;
+   margin-left: 15px;
+   border-radius: 25px;
+   font-weight: 500;
+   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fff, inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 5px rgba(255, 255, 255, 0.05);
+}
+
+.middle {
+   position: relative;
+   width: 100%;
+   max-width: 500px;
+   margin-top: 40px;
+   display: inline-block;
+}
+
+.slider {
+   position: relative;
+   z-index: 1;
+   height: 10px;
+   margin: 0 15px;
+}
+
+.slider>.track {
+   position: absolute;
+   z-index: 1;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   border-radius: 5px;
+   background-color: #b5d7f1;
+}
+
+.slider>.range {
+   position: absolute;
+   z-index: 2;
+   left: 25%;
+   right: 25%;
+   top: 0;
+   bottom: 0;
+   border-radius: 5px;
+   background-color: #27a0ff;
+}
+
+.slider>.thumb {
+   position: absolute;
+   z-index: 3;
+   width: 30px;
+   height: 30px;
+   background-color: #27a0ff;
+   border-radius: 50%;
+}
+
+.slider>.thumb.left {
+   left: 25%;
+   transform: translate(-15px, -10px);
+}
+
+.slider>.thumb.right {
+   right: 25%;
+   transform: translate(15px, -10px);
+}
+
+.range2 {
+   position: absolute;
+   pointer-events: none;
+   -webkit-appearance: none;
+   z-index: 2;
+   height: 10px;
+   width: 100%;
+   opacity: 0;
+}
+
+.range2::-webkit-slider-thumb {
+   pointer-events: all;
+   width: 30px;
+   height: 30px;
+   border-radius: 0;
+   border: 0 none;
+   background-color: red;
+   cursor: pointer;
+   -webkit-appearance: none;
+}
+
+#multi_range {
+   margin: 0 auto;
+   background-color: #27a0ff;
+   border-radius: 20px;
+   margin-top: 20px;
+   text-align: center;
+   width: 90px;
+   font-weight: 500;
+   font-size: 1.25em;
+   color: #fff;
+}
+
+
+body,
+html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: -webkit-radial-gradient(center, rgba(0, 0, 70, 1) 0%, #000 60%);
+}
+
+::after,
+::before {
+  content: " ";
+  display: block;
+}
+::after,
+::before,
+.moon,
+.sky,
+.star,
+.asteroid {
+  position: absolute;
+}
+.moon {
+  color: #ffd;
+  background: radial-gradient(
+    circle at -30% 50%,
+    rgba(0, 0, 0, 0) 175px,
+    currentColor 100%
+  );
+  z-index: 999;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 20px currentColor);
+}
+.sky {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  animation: rotate 400s infinite linear;
+}
+.star {
+  width: 3px;
+  height: 3px;
+  background-color: white;
+  border-radius: 50%;
+  animation: shine 800s infinite linear;
+  &.scale1 {
+    transform: scale(1);
+  }
+  &.scale2 {
+    transform: scale(0.5);
+  }
+  &.scale3 {
+    transform: scale(1.3);
+  }
+  &.animate1 {
+    animation-duration: 0.5s;
+  }
+  &.animate2 {
+    animation-duration: 1s;
+  }
+  &.animate3 {
+    animation-duration: 1.5s;
+  }
+  &.animate4 {
+    animation-duration: 2s;
+  }
+  &.opacity1 {
+    opacity: 1;
+  }
+  &.opacity2 {
+    opacity: 0.5;
+  }
+  &.opacity3 {
+    opacity: 0.2;
+  }
+}
+.asteroid {
+  top: -200px;
+  left: -200px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.8;
+  animation-name: assteroid;
+  animation-timing-function: linease-inear;
+  animation-iteration-count: infinite;
+  animation-duration: 7s;
+  animation-delay: 2s;
+  &:before {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    .border-radius(50%);
+    -webkit-box-shadow: 0px 0px 7px 2px #fff;
+    -moz-box-shadow: 0px 0px 7px 2px #fff;
+    box-shadow: 0px 0px 7px 2px #fff;
+    bottom: 0;
+    right: 0;
+  }
+  &:after {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-bottom: 200px solid #fff;
+    border-right: 3px solid transparent;
+    bottom: -22px;
+    right: 75px;
+    .rotate(-45deg);
+  }
+}
+/*
+@keyframes shine {
+  0% {
+    box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.05);
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.05);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes assteroid {
+  0% {
+    top: -200px;
+    left: -200px;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+  }
+  10% {
+    top: 200px;
+    left: 200px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  100% {
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes assteroid {
+  0% {
+    top: -200px;
+    left: -200px;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+  }
+  10% {
+    top: 200px;
+    left: 200px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+  100% {
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
+}
+.rotate(@deg: 90) {
+  -webkit-transform: rotate(@deg * 1deg);
+  -moz-transform: rotate(@deg * 1deg);
+  transform: rotate(@deg * 1deg);
+  -o-transform: rotate(@deg * 1deg);
+  @IEdeg: round(@deg / 90, 0);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@IEdeg);
+}
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+*/
+
+  </style>
+  
+</head>
+  <body>
+  
+  <!--
+<div class="sky"></div>
+<div class="moon"></div>
+-->
+  
+
+    <ul class="threeD-button-set" tabindex="-1" style="transform:  skewX(-0.4deg) skewY(-0.4deg)">
+      <li><button id="new-game" tabindex="0" style="">New Game</button></li>
+	  <!--
+      <li><button id="discovery-btn" tabindex="-1" style="">Discovery-Mode</button></li>
+      <li><button id="campaign-btn" tabindex="-1" style="">Campaign-Mode</button></li>
+      <li><button tabindex="-1" style="">Game 3</button></li>
+	  -->
+      <li><button id="setting" tabindex="-1" style="">Sounds</button></li>
+	  
+	  <li><button id="home-btn" tabindex="0" style="">Home</button></li>
+    </ul> 
+	<div id="wall" style="position:absolute;width:100%;height:100%;background: rgba(0,0,0,0.8);visibility:hidden;"></div>
+	<div id="volume-container" style="position:absolute;left:400px;top:200px;visibility:hidden;">
+			<div>
+				<input type="button" value="X"  onclick="closeVolume()" style="border-radius:50px;width:30px;height:30px;background-color:gray;filter:brightness(190%)"/>
+			</div>
+			<div class="box">
+				<input id="volume-slider" type="range" class="range1" value="100" min="0" max="100" onmousemove="rangeSlider(this.value)">
+				
+			</div>
+		</div>
+
+</body></html>
+
+<script>
+
+
+
+/*
+===============================================================
+
+Barev and welcome to my little playground!
+
+My name is Ani and I'm a Web Developer from Yerevan. Here you will find some of my personal experiments. Feel free to use them for whatever you want.
+
+===============================================================
+*/
+function init(){
+
+  var styles = ["animate4", "animate1", "animate2", "animate3"];
+  var scales = ["scale1", "scale2", "scale3"];
+  var opacities = ["opacity1", "opacity1", "opacity1", "opacity2", "opacity2", "opacity3"];
+
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  var stars = "";
+  var count = 300;
+  var widthWindow = window.innerWidth;
+  var heightWindow = window.innerHeight;
+/*
+  for (var i = 0; i < count; i++) {
+    stars += "<span class='star " + styles[rand(0, 4)] + " " + opacities[rand(0, 6)] + " "
+    + scales[rand(0, 3)] + "' style='animation-delay: ." + rand(0, 9)+ "s; left: "
+    + rand(0, widthWindow) + "px; top: " + rand(0, heightWindow) + "px;'></span>";
+  }
+*/
+  document.querySelector(".sky").innerHTML = stars;
+
+  }
+
+window.onload = init;
+window.onresize = init;
+
+
+
+
+
+var buttons = document.querySelectorAll("button");
+buttons.forEach(function(button) {
+    button.style.width="310px";
+});
+
+var _parent_page=null;
+function set_parent_page(x){
+	_parent_page=x;
+}
+
+const _new_game=document.getElementById("new-game");
+_new_game.addEventListener("click",()=>{
+	//_parent_page.location.reload();
+	//_parent_page.location="../../show-room-1.html";
+	_parent_page.location="../../homepage-discovery-mode.html";
+});
+
+const _home_page=document.getElementById("home-btn");
+_home_page.addEventListener("click",()=>{
+	//_parent_page.location.href="../../home-page/index.html";
+	_parent_page.location.href="../../homepage-discovery-mode.html";
+});
+/*
+const _discovery_page=document.getElementById("discovery-btn");
+_discovery_page.addEventListener("click",()=>{
+	_parent_page.location.href="../../homepage-discovery-mode.html";
+});
+const _campaign_page=document.getElementById("campaign-btn");
+_campaign_page.addEventListener("click",()=>{
+	_parent_page.location.href="../../legion-game-option.html";
+});
+*/
+
+
+let _change_volume_fc=(_val)={};
+function set_change_volume_fc(_fc){
+	_change_volume_fc=_fc;
+}
+const _volume_slider=document.getElementById("volume-slider");
+_volume_slider.addEventListener("click",()=>{
+	_change_volume_fc(parseInt(_volume_slider.value));
+	localStorage.setItem("spaceGameVolume",parseInt(_volume_slider.value));
+});
+
+function openVolume(){
+	let _t_volume=localStorage.getItem("spaceGameVolume");
+	if(_t_volume===null)
+		_t_volume=100;
+	else
+		_t_volume=parseInt(_t_volume);
+	
+	_volume_slider.value=_t_volume;
+	document.getElementById('volume-container').style.visibility='visible';
+ }
+ function closeVolume(){
+ document.getElementById("wall").style.visibility="hidden";
+	document.getElementById('volume-container').style.visibility='hidden';
+ }
+
+const _setting=document.getElementById("setting");
+_setting.addEventListener("click",()=>{
+	document.getElementById("wall").style.visibility="visible";
+	openVolume();
+});
+</script>

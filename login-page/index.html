@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Pompiere&display=swap" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+      <title>Animated login form - Bedimcode</title>
+	  
+	  <style>
+	  
+.box {
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+	//border: 1px solid currentcolor;
+	border-radius: 3px;
+	font-size: 30px;
+	padding: 1em;
+	position: relative;
+	
+	margin-bottom: .25em;
+	vertical-align: top;
+	transition: .3s color, .3s border, .3s transform, .3s opacity;
+	// &:not(:hover) {
+	// 	[class*="loader-"] {
+	// 		animation: none;
+	// 		&:before, &:after {
+	// 			animation: none;
+	// 		}
+	// 	}
+	// }
+	&:hover {
+		color: #fff; //#d60b52;
+		background-color: rgba(0,0,0,.1);
+		font-size: 0;
+		padding: 0;
+		border-width: 3px;
+		line-height: 200px;
+		opacity: 1;
+		transform: scale(1.2);
+		z-index: 2;
+		[class*="loader-"] {
+			font-size: 70px;
+			line-height: 200px;
+		}
+	}
+}
+
+
+[class*="loader-"] {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	color: inherit;
+	vertical-align: middle;
+	pointer-events: none;
+}
+
+.loader-01 {
+	border: .2em dotted currentcolor;
+	border-radius: 50%;
+	animation: 1s loader-01 linear infinite;
+}
+
+@keyframes loader-01 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+////////////////////////////////////////
+.loader-02 {
+	border: .2em solid transparent;
+	border-left-color: currentcolor;
+	border-right-color: currentcolor;
+	border-radius: 50%;
+	animation: 1s loader-02 linear infinite;
+}
+
+@keyframes loader-02 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/////////////////////////////////////
+.loader-03 {
+	border: .2em solid currentcolor;
+	border-bottom-color: transparent;
+	border-radius: 50%;
+	animation: 1s loader-03 linear infinite;
+	position: relative;
+}
+
+@keyframes loader-03 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.box:nth-of-type(n + 43){
+	display:none;
+}
+	  </style>
+	  
+   </head>
+   <body>
+      <div class="login" id="login-panel">
+      </div>
+	  
+      <script src="../src/user.js"></script>
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>
