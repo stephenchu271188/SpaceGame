@@ -72,7 +72,7 @@ let _parameters=_game._parameters;
 	add_condition(_game1_single,_parameters._defend_planet_mode_rank_require,1);
 	add_condition(_game1_multi,_parameters._combat_mode_rank_require,2);
 	add_condition(_game1_tunnel,1,3);
-	add_condition(_game1_raid,5,4);
+	add_condition(_game1_raid,35,4);
 	add_condition(_game1_2d,_parameters._defend_base_mode_rank_require,5);
 	add_condition(_game1_discovery,_parameters._discovery_universe_mode_rank_require,6);
 	

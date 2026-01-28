@@ -73,7 +73,7 @@ class ProceduralTerrain_Demo extends SpaceShipGame {
 		*/
 		this.create_solar_system();
 		this.move_to_earth();
-		this._editModeCenter.show_main_button();
+		//this._editModeCenter.show_main_button();
 		/*
 			Trong những lần đầu tiên player vào chơi game thì sẽ tự động show mission 2 panel
 			Dữ liệu này chỉ cần lưu trong local storage chứ ko lưu vào database

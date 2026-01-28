@@ -437,6 +437,7 @@ class GameParameters{
 	
 	
 	init_test_mode_1(){//su dung khi test game
+		return;
 			if(localStorage.getItem('showroom-unlock-all')==="true"){
 				for(let i=0;i<this.spaceship_items.length;i++){
 					//this.spaceship_items[i].player_level=1;
