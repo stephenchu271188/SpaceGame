@@ -907,8 +907,8 @@ class SpaceShipGame extends game.Game{
 	   let _deltaY=py-this._last_mouse_pos.y;
 	   
 	   const _max_speed=0.2;
-	   let _speedX=_max_speed*(_deltaX/8);
-	   let _speedY=_max_speed*(_deltaY/8);
+	   let _speedX=_max_speed*(_deltaX/16);
+	   let _speedY=_max_speed*(_deltaY/16);
 	  
 	   if(_speedX<0)_speedX=-_speedX;
 	   if(_speedY<0)_speedY=-_speedY;
