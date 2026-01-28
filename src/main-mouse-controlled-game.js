@@ -95,7 +95,7 @@ class ProceduralTerrain_Demo extends SpaceShipGame {
     super({game_id:1,
 	load_unit_model_complete:()=>{
 		if(this.System.isMobileDevice()){
-			_tunnel_width=500;//tren mobile neu tunnel size nho? qua' se rat kho choi
+			_tunnel_width=400;//tren mobile neu tunnel size nho? qua' se rat kho choi
 		}
 		else{
 			_tunnel_width=300;//can dam bao du? nho? de player-ship ko the quay dau`
