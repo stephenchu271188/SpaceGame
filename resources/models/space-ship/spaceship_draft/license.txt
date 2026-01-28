@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spaceship Draft
+* source:	https://sketchfab.com/3d-models/spaceship-draft-e55baed5f6fe41139a19c2e80ab45488
+* author:	antonbelyaev (https://sketchfab.com/antonbelyaev)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spaceship Draft" (https://sketchfab.com/3d-models/spaceship-draft-e55baed5f6fe41139a19c2e80ab45488) by antonbelyaev (https://sketchfab.com/antonbelyaev) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

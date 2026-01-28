@@ -1,0 +1,11 @@
+Model Information:
+* title:	BG 124-201-00 Tackle Veil
+* source:	https://sketchfab.com/3d-models/bg-124-201-00-tackle-veil-900b5181d6ad4f55926f796902a4d2ee
+* author:	alx_flameniro (https://sketchfab.com/alx_flameniro)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "BG 124-201-00 Tackle Veil" (https://sketchfab.com/3d-models/bg-124-201-00-tackle-veil-900b5181d6ad4f55926f796902a4d2ee) by alx_flameniro (https://sketchfab.com/alx_flameniro) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

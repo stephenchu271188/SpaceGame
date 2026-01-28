@@ -1,0 +1,11 @@
+Model Information:
+* title:	Paradise planet
+* source:	https://sketchfab.com/3d-models/paradise-planet-7c0a155e5dae44ae9dc3d4c01f3b2102
+* author:	klrxyz (https://sketchfab.com/klrxyz)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Paradise planet" (https://sketchfab.com/3d-models/paradise-planet-7c0a155e5dae44ae9dc3d4c01f3b2102) by klrxyz (https://sketchfab.com/klrxyz) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

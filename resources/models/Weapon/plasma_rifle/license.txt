@@ -1,0 +1,11 @@
+Model Information:
+* title:	Halo - Plasma Rifle
+* source:	https://sketchfab.com/3d-models/halo-plasma-rifle-5d2057dfef4041489f3207ce27e825f1
+* author:	3DRaven (https://sketchfab.com/3DRaven)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Halo - Plasma Rifle" (https://sketchfab.com/3d-models/halo-plasma-rifle-5d2057dfef4041489f3207ce27e825f1) by 3DRaven (https://sketchfab.com/3DRaven) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

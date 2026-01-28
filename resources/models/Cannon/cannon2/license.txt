@@ -1,0 +1,11 @@
+Model Information:
+* title:	Planet Mountain Dew - Voltage Space Ship
+* source:	https://sketchfab.com/3d-models/planet-mountain-dew-voltage-space-ship-814ebd622efc449e870bde65e3d56728
+* author:	Jacob Quintana (https://sketchfab.com/jacobq1004)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Planet Mountain Dew - Voltage Space Ship" (https://sketchfab.com/3d-models/planet-mountain-dew-voltage-space-ship-814ebd622efc449e870bde65e3d56728) by Jacob Quintana (https://sketchfab.com/jacobq1004) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

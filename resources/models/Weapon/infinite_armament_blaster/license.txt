@@ -1,0 +1,11 @@
+Model Information:
+* title:	Custom Halo Infinite Armament Blaster
+* source:	https://sketchfab.com/3d-models/custom-halo-infinite-armament-blaster-d980259815be45a7b4ce65a30299ebbc
+* author:	Aegis_Wolf (https://sketchfab.com/Aegis_Wolf)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Custom Halo Infinite Armament Blaster" (https://sketchfab.com/3d-models/custom-halo-infinite-armament-blaster-d980259815be45a7b4ce65a30299ebbc) by Aegis_Wolf (https://sketchfab.com/Aegis_Wolf) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

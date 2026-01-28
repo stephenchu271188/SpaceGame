@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nave espacial - Spaceship lowpoly
+* source:	https://sketchfab.com/3d-models/nave-espacial-spaceship-lowpoly-5388592f45b144e280689e8a39c55f5c
+* author:	Harold.Llanos (https://sketchfab.com/Harold.Llanos)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nave espacial - Spaceship lowpoly" (https://sketchfab.com/3d-models/nave-espacial-spaceship-lowpoly-5388592f45b144e280689e8a39c55f5c) by Harold.Llanos (https://sketchfab.com/Harold.Llanos) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

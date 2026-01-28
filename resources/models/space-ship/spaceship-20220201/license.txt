@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spaceship-20220201
+* source:	https://sketchfab.com/3d-models/spaceship-20220201-0e8852a1e4c94ba9ac62dec42dd43f8b
+* author:	d-alien (https://sketchfab.com/daleziemianski)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spaceship-20220201" (https://sketchfab.com/3d-models/spaceship-20220201-0e8852a1e4c94ba9ac62dec42dd43f8b) by d-alien (https://sketchfab.com/daleziemianski) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Libra Moth
+* source:	https://sketchfab.com/3d-models/libra-moth-9384c7853bb34c19bd5f0eae3fff5365
+* author:	ramieous (https://sketchfab.com/ramieous)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Libra Moth" (https://sketchfab.com/3d-models/libra-moth-9384c7853bb34c19bd5f0eae3fff5365) by ramieous (https://sketchfab.com/ramieous) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

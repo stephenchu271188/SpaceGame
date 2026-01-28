@@ -1,0 +1,11 @@
+Model Information:
+* title:	PHOENIX Sci-Fi Spaceship
+* source:	https://sketchfab.com/3d-models/phoenix-sci-fi-spaceship-748271a4f7604d9cb2a6e7bf1e6e437e
+* author:	Andrzej Borkowski (https://sketchfab.com/abg_3d)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PHOENIX Sci-Fi Spaceship" (https://sketchfab.com/3d-models/phoenix-sci-fi-spaceship-748271a4f7604d9cb2a6e7bf1e6e437e) by Andrzej Borkowski (https://sketchfab.com/abg_3d) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

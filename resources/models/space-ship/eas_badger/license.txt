@@ -1,0 +1,11 @@
+Model Information:
+* title:	EAS Badger
+* source:	https://sketchfab.com/3d-models/eas-badger-5b143079f74e4722a654b9dd798ca24a
+* author:	Chris Clark (https://sketchfab.com/Dalekseth)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "EAS Badger" (https://sketchfab.com/3d-models/eas-badger-5b143079f74e4722a654b9dd798ca24a) by Chris Clark (https://sketchfab.com/Dalekseth) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

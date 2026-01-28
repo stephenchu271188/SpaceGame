@@ -1,0 +1,11 @@
+Model Information:
+* title:	TMP Guardian Starfighter
+* source:	https://sketchfab.com/3d-models/tmp-guardian-starfighter-1feceb93b58e46f0912eb952256c349e
+* author:	Robin Butler (https://sketchfab.com/StarTrekGuy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "TMP Guardian Starfighter" (https://sketchfab.com/3d-models/tmp-guardian-starfighter-1feceb93b58e46f0912eb952256c349e) by Robin Butler (https://sketchfab.com/StarTrekGuy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

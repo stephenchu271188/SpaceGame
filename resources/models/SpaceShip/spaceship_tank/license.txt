@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spaceship - Tank
+* source:	https://sketchfab.com/3d-models/spaceship-tank-1c6b8965c90d41c7ae1720138671824f
+* author:	cemayhan (https://sketchfab.com/cemayhan)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spaceship - Tank" (https://sketchfab.com/3d-models/spaceship-tank-1c6b8965c90d41c7ae1720138671824f) by cemayhan (https://sketchfab.com/cemayhan) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

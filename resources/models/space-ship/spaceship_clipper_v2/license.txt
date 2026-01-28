@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spaceship Clipper v2 - Red Menace
+* source:	https://sketchfab.com/3d-models/spaceship-clipper-v2-red-menace-632da93e0e4c4ebab699ecb641803898
+* author:	FilipZelinka (https://sketchfab.com/FilipZelinka)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spaceship Clipper v2 - Red Menace" (https://sketchfab.com/3d-models/spaceship-clipper-v2-red-menace-632da93e0e4c4ebab699ecb641803898) by FilipZelinka (https://sketchfab.com/FilipZelinka) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

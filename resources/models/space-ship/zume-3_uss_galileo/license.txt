@@ -1,0 +1,11 @@
+Model Information:
+* title:	Zume-3 USS Galileo
+* source:	https://sketchfab.com/3d-models/zume-3-uss-galileo-59183f7fcd354502bb44acd448430cd4
+* author:	Robin Butler (https://sketchfab.com/StarTrekGuy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Zume-3 USS Galileo" (https://sketchfab.com/3d-models/zume-3-uss-galileo-59183f7fcd354502bb44acd448430cd4) by Robin Butler (https://sketchfab.com/StarTrekGuy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
